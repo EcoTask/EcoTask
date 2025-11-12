@@ -1,16 +1,36 @@
-## Hi there 👋
+## EcoTask 🌿
 
-<!--
-**EcoTask/EcoTask** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+**Ingurumenaren aldeko jokoa gazteentzat**
 
-Here are some ideas to get you started:
+EcoTask Euskadin sortutako mugikor aplikazio bat da.  
+Erabiltzaileek ekintza ekologikoak partekatzen dituzte, puntuak irabazten dituzte eta **sari errealak** lortzen dituzte.
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+---
+
+### Zer egiten dugu?
+- **Joko moduan**: mailak, erronkak, lidergo-taula  
+- **Gazteak motibatzen**: 16-25 urte  
+- **Euskadi osorako**: 5.000 erabiltzaile lehen urtean  
+
+---
+
+### Taldea
+| Izena | Rola |
+|------|------|
+| Programatzailea | Garapena eta mantentzea |
+| Diseinatzailea | UI/UX eta identitatea |
+| Marketina | Komunikazioa eta sare sozialak |
+| Koordinatzailea | Estrategia eta zuzendaritza |
+
+---
+
+### Harremanetarako
+- **Email**: [info@ecotask.eus](mailto:info@ecotask.eus)  
+- **Instagram**: [@ecotask](https://instagram.com/ecotask)  
+- **TikTok**: [@ecotask](https://tiktok.com/@ecotask)  
+- **X**: [@ecotask](https://x.com/ecotask)  
+
+---
+
+> **Webgunea**: [ecotask.github.io](https://ecotask.github.io)  
+> **Euskadin sortua**  
