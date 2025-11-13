@@ -42,7 +42,6 @@
             position: relative;
             overflow: hidden;
         }
-        /* Fondo topografikoa (SVG) */
         header::before {
             content: '';
             position: absolute;
@@ -148,7 +147,7 @@
             content: '';
             display: block;
             width: 100px;
-            height: 5px;
+            height:1px;
             background: var(--berde-argia);
             margin: 25px auto 0;
             border-radius: 3px;
@@ -210,7 +209,7 @@
             font-weight: 500;
             font-size: 1.05rem;
         }
-        /* Team Section */
+        /* TALDEA - Ikonoekin, izen-abizenekin eta karguekin */
         .team-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -261,9 +260,15 @@
         }
         .team-card h3 {
             color: var(--berdea);
-            margin-bottom: 12px;
+            margin-bottom: 8px;
             font-weight: 600;
             font-size: 1.25rem;
+        }
+        .team-card .role {
+            color: var(--grisa);
+            font-size: 0.98rem;
+            font-weight: 500;
+            margin-bottom: 12px;
         }
         .team-card p {
             color: var(--grisa);
@@ -456,24 +461,34 @@
             <h2 class="section-title">Gure Taldea</h2>
             <div class="team-grid">
                 <div class="team-card">
-                    <div class="team-icon"><i class="fas fa-code"></i></div>
-                    <h3>Programatzailea</h3>
-                    <p>Aplikazioaren garapena, funtzionaltasunak eta eguneraketak kudeatzen ditu.</p>
-                </div>
-                <div class="team-card">
-                    <div class="team-icon"><i class="fas fa-paint-brush"></i></div>
-                    <h3>Diseinatzaile Grafikoa</h3>
-                    <p>Identitate bisuala, UI/UX eta esperientzia erabilerraza sortzen du.</p>
-                </div>
-                <div class="team-card">
-                    <div class="team-icon"><i class="fas fa-bullhorn"></i></div>
-                    <h3>Marketin Arduraduna</h3>
-                    <p>Komunikazioa, sare sozialak eta ikastetxeekin lankidetza kudeatzen ditu.</p>
+                    <div class="team-icon"><i class="fas fa-chart-bar"></i></div>
+                    <h3>Danel Berreteaga</h3>
+                    <div class="role">Datuen Analista</div>
+                    <p>Erabiltzaileen datuak aztertzen ditu, portaera ereduak identifikatzen eta aplikazioaren eraginkortasuna hobetzen du.</p>
                 </div>
                 <div class="team-card">
                     <div class="team-icon"><i class="fas fa-user-tie"></i></div>
-                    <h3>Koordinatzaile Nagusia</h3>
-                    <p>Proiektu osoa zuzentzen du, estrategia eta hazkundea bideratzen ditu.</p>
+                    <h3>Asier Ayerdi</h3>
+                    <div class="role">Koordinatzaile Nagusia</div>
+                    <p>Proiektu osoa zuzentzen du, estrategia definitzen eta taldearen lana koordinatzen du.</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-icon"><i class="fas fa-bullhorn"></i></div>
+                    <h3>Aner Illaro</h3>
+                    <div class="role">Marketing Arduraduna</div>
+                    <p>Komunikazio-estrategia, sare sozialak eta ikastetxeekin lankidetza kudeatzen ditu.</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-icon"><i class="fas fa-paint-brush"></i></div>
+                    <h3>Luken Bustinza</h3>
+                    <div class="role">Diseinatzaile Grafikoa</div>
+                    <p>Identitate bisuala, UI/UX eta aplikazioaren esperientzia erabilerraza sortzen du.</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-icon"><i class="fas fa-users"></i></div>
+                    <h3>Olaia Aretxaga</h3>
+                    <div class="role">Giza Baliabideen Arduraduna</div>
+                    <p>Taldearen kudeaketa, hautaketa, prestakuntza eta barne-kultura sustatzen ditu.</p>
                 </div>
             </div>
         </div>
