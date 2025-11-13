@@ -3,23 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EcoTask - Ingurumenaren Alde</title>
+    <title>EcoTask – Gazteak Planetaren Alde</title>
     <meta name="description" content="EcoTask: Euskadin sortutako aplikazioa. Gazteak ingurumenaren aldeko ekintzak egitera motibatzen ditu joko moduan. Puntuak, mailak, sariak eta komunitatea.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         :root {
-            --berdea: #2e7d32;
-            --berde-argia: #4caf50;
+            --berdea: #1a5f3d;
+            --berde-argia: #2e7d32;
             --berde-oso-argia: #e8f5e8;
-            --grisa-argia: #f8f9fa;
-            --grisa: #6c757d;
-            --iluna: #212529;
+            --grisa-argia: #f9f9f9;
+            --grisa: #8e8e93;
+            --iluna: #1d1d1f;
             --zuria: #ffffff;
-            --shadow: 0 10px 30px rgba(0,0,0,0.08);
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --radius: 18px;
         }
         * {
             margin: 0;
@@ -31,14 +31,15 @@
             background-color: var(--grisa-argia);
             color: var(--iluna);
             line-height: 1.7;
-            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
-        /* Header */
+        /* Header – Apple-style hero */
         header {
             background: linear-gradient(135deg, var(--berdea) 0%, var(--berde-argia) 100%);
             color: var(--zuria);
             text-align: center;
-            padding: 100px 20px 70px;
+            padding: 140px 20px 100px;
             position: relative;
             overflow: hidden;
         }
@@ -46,65 +47,62 @@
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" opacity="0.07"><defs><pattern id="topo" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse"><path d="M0,100 Q50,50 100,100 T200,100" stroke="%23ffffff" stroke-width="1.5" fill="none"/><path d="M0,150 Q50,100 100,150 T200,150" stroke="%23ffffff" stroke-width="1" fill="none"/><path d="M50,50 Q75,25 100,50" stroke="%23ffffff" stroke-width="1" fill="none"/></pattern></defs><rect width="100%" height="100%" fill="url(%23topo)"/></svg>');
-            background-size: 400px;
-            animation: topo-move 60s infinite linear;
-        }
-        @keyframes topo-move {
-            0% { background-position: 0 0; }
-            100% { background-position: 400px 400px; }
+            background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            pointer-events: none;
         }
         .logo-container {
             position: relative;
             z-index: 2;
-            margin-bottom: 25px;
+            margin-bottom: 28px;
         }
         .logo-img {
-            height: 100px;
-            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.25));
+            height: 110px;
+            filter: drop-shadow(0 6px 16px rgba(0,0,0,0.3));
             transition: var(--transition);
         }
         .logo-img:hover {
-            transform: scale(1.05);
+            transform: translateY(-4px);
         }
         .hero-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.2rem;
-            font-weight: 700;
-            margin: 25px 0 18px;
-            text-shadow: 0 3px 8px rgba(0,0,0,0.2);
-            letter-spacing: -0.5px;
+            font-size: 3.8rem;
+            font-weight: 800;
+            margin: 0 0 16px;
+            letter-spacing: -1.2px;
+            text-shadow: 0 4px 12px rgba(0,0,0,0.25);
         }
         .hero-subtitle {
-            font-size: 1.35rem;
-            font-weight: 300;
-            max-width: 750px;
+            font-size: 1.45rem;
+            font-weight: 400;
+            max-width: 720px;
             margin: 0 auto;
             opacity: 0.95;
+            letter-spacing: -0.3px;
         }
-        /* Navigation */
+        /* Navigation – Clean & sticky */
         nav {
-            background: var(--zuria);
-            padding: 20px 0;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            padding: 18px 0;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 3px 20px rgba(0,0,0,0.1);
-            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
         }
         .nav-container {
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
             display: flex;
             justify-content: center;
-            gap: 50px;
+            gap: 60px;
         }
         nav a {
             color: var(--iluna);
             text-decoration: none;
             font-weight: 600;
-            font-size: 1.1rem;
-            padding: 10px 0;
+            font-size: 1.05rem;
+            padding: 8px 0;
             position: relative;
             transition: var(--transition);
         }
@@ -112,13 +110,12 @@
             content: '';
             position: absolute;
             bottom: 0;
-            left: 50%;
+            left: 0;
             width: 0;
-            height: 3.5px;
+            height: 2.5px;
             background: var(--berde-argia);
             border-radius: 2px;
             transition: var(--transition);
-            transform: translateX(-50%);
         }
         nav a:hover {
             color: var(--berde-argia);
@@ -126,44 +123,34 @@
         nav a:hover::after {
             width: 100%;
         }
-        /* Main Container */
+        /* Container */
         .container {
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
             padding: 0 20px;
         }
         section {
-            padding: 90px 0;
+            padding: 100px 0;
         }
         .section-title {
             text-align: center;
-            font-family: 'Playfair Display', serif;
-            font-size: 2.8rem;
-            color: var(--berdea);
+            font-size: 2.6rem;
+            font-weight: 700;
+            color: var(--iluna);
             margin-bottom: 60px;
-            position: relative;
+            letter-spacing: -0.8px;
         }
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 100px;
-            height: 5px;
-            background: var(--berde-argia);
-            margin: 25px auto 0;
-            border-radius: 3px;
-        }
-        /* About Section */
+        /* About – Grid with subtle card */
         .about-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 60px;
             align-items: center;
-            margin-top: 50px;
         }
         .about-text {
-            font-size: 1.18rem;
-            text-align: left;
-            letter-spacing: 0.2px;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--iluna);
         }
         .about-text strong {
             color: var(--berdea);
@@ -171,45 +158,50 @@
         }
         .highlight-box {
             background: var(--berde-oso-argia);
-            padding: 30px;
-            border-radius: 18px;
-            border-left: 6px solid var(--berde-argia);
+            padding: 32px;
+            border-radius: var(--radius);
+            border-left: 5px solid var(--berde-argia);
             font-style: italic;
             font-size: 1.15rem;
-            box-shadow: var(--shadow);
             line-height: 1.8;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+            transition: var(--transition);
         }
+        .highlight-box:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.1);
+        }
+        /* Stats – Clean cards */
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 30px;
             margin-top: 50px;
         }
         .stat-card {
             background: var(--zuria);
-            padding: 35px 25px;
-            border-radius: 18px;
+            padding: 32px 20px;
+            border-radius: var(--radius);
             text-align: center;
-            box-shadow: var(--shadow);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.05);
             transition: var(--transition);
         }
         .stat-card:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 25px 45px rgba(0,0,0,0.15);
+            transform: translateY(-8px);
+            box-shadow: 0 16px 35px rgba(0,0,0,0.1);
         }
         .stat-number {
-            font-size: 2.8rem;
-            font-weight: 700;
+            font-size: 3rem;
+            font-weight: 800;
             color: var(--berde-argia);
-            margin-bottom: 12px;
-            line-height: 1;
+            margin-bottom: 8px;
         }
         .stat-label {
             color: var(--grisa);
             font-weight: 500;
-            font-size: 1.05rem;
+            font-size: 1rem;
         }
-        /* Team Section */
+        /* Team – Minimal icons, no photos */
         .team-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -218,50 +210,40 @@
         }
         .team-card {
             background: var(--zuria);
-            padding: 35px;
-            border-radius: 22px;
+            padding: 36px;
+            border-radius: var(--radius);
             text-align: center;
-            box-shadow: var(--shadow);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.05);
             transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-            border: 1px solid #e9ecef;
-        }
-        .team-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 6px;
-            background: linear-gradient(90deg, var(--berdea), var(--berde-argia));
-            border-radius: 22px 22px 0 0;
+            border: 1px solid rgba(0,0,0,0.04);
         }
         .team-card:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.14);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
             border-color: var(--berde-argia);
         }
         .team-icon {
-            width: 80px;
-            height: 80px;
+            width: 84px;
+            height: 84px;
             border-radius: 50%;
-            margin: 0 auto 25px;
+            margin: 0 auto 24px;
             background: linear-gradient(135deg, var(--berde-oso-argia), #d0e8d0);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
+            font-size: 2.1rem;
             color: var(--berdea);
             transition: var(--transition);
         }
         .team-card:hover .team-icon {
             background: var(--berde-argia);
             color: var(--zuria);
-            transform: scale(1.1);
+            transform: scale(1.12);
         }
         .team-card h3 {
-            color: var(--berdea);
-            margin-bottom: 8px;
-            font-weight: 600;
+            font-weight: 700;
+            color: var(--iluna);
+            margin-bottom: 6px;
             font-size: 1.25rem;
         }
         .team-card .role {
@@ -275,29 +257,29 @@
             font-size: 0.98rem;
             line-height: 1.6;
         }
-        /* Contact Section */
+        /* Contact – Clean cards */
         .contact-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 35px;
             margin-top: 50px;
         }
         .contact-item {
             background: var(--zuria);
-            padding: 35px;
-            border-radius: 22px;
+            padding: 36px;
+            border-radius: var(--radius);
             text-align: center;
-            box-shadow: var(--shadow);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.05);
             transition: var(--transition);
-            border: 1px solid #e9ecef;
+            border: 1px solid rgba(0,0,0,0.04);
         }
         .contact-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+            transform: translateY(-8px);
+            box-shadow: 0 16px 35px rgba(0,0,0,0.1);
             border-color: var(--berde-argia);
         }
         .contact-item i {
-            font-size: 2.5rem;
+            font-size: 2.6rem;
             color: var(--berde-argia);
             margin-bottom: 18px;
             transition: var(--transition);
@@ -308,7 +290,7 @@
         }
         .contact-item strong {
             display: block;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             color: var(--iluna);
             font-weight: 600;
             font-size: 1.1rem;
@@ -318,82 +300,79 @@
             text-decoration: none;
             font-weight: 500;
             font-size: 1.05rem;
-            word-break: break-word;
         }
         .contact-item a:hover {
             color: var(--berde-argia);
             text-decoration: underline;
         }
-        /* Footer */
+        /* Footer – Minimal & elegant */
         footer {
             background: var(--iluna);
             color: var(--zuria);
             text-align: center;
-            padding: 50px 20px;
-            margin-top: 60px;
+            padding: 60px 20px;
+            margin-top: 80px;
         }
         .footer-content {
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 18px;
+            gap: 20px;
         }
         .footer-logo {
-            height: 55px;
+            height: 60px;
             filter: brightness(0) invert(1);
-            opacity: 0.92;
+            opacity: 0.9;
+            transition: var(--transition);
+        }
+        .footer-logo:hover {
+            opacity: 1;
+            transform: scale(1.05);
         }
         .footer-text {
-            font-size: 0.98rem;
-            opacity: 0.85;
+            font-size: 0.95rem;
+            opacity: 0.8;
             letter-spacing: 0.3px;
         }
         /* Responsive */
         @media (max-width: 992px) {
-            .about-grid {
+            .about-grid, .stats-grid {
                 grid-template-columns: 1fr;
                 text-align: center;
-                gap: 50px;
             }
             .hero-title {
-                font-size: 2.7rem;
+                font-size: 3.2rem;
             }
         }
         @media (max-width: 768px) {
             header {
-                padding: 80px 20px 60px;
+                padding: 100px 20px 80px;
             }
             .hero-title {
-                font-size: 2.3rem;
+                font-size: 2.8rem;
             }
             .nav-container {
                 flex-direction: column;
-                gap: 18px;
-            }
-            nav a {
-                font-size: 1.05rem;
+                gap: 20px;
             }
             section {
-                padding: 70px 0;
+                padding: 80px 0;
             }
             .section-title {
                 font-size: 2.3rem;
             }
         }
         @media (max-width: 480px) {
-            .logo-img {
-                height: 75px;
+            .logo-img, .footer-logo {
+                height: 70px;
             }
             .hero-title {
-                font-size: 2rem;
+                font-size: 2.4rem;
             }
             .hero-subtitle {
-                font-size: 1.15rem;
-            }
-            .section-title {
-                font-size: 2rem;
+                font-size: 1.2rem;
             }
         }
     </style>
@@ -418,11 +397,10 @@
         </div>
     </nav>
 
-    <!-- About Section -->
+    <!-- About -->
     <section id="zer-gara">
         <div class="container">
             <h2 class="section-title">Zer egiten dugu?</h2>
-            
             <div class="about-grid">
                 <div>
                     <p class="about-text">
@@ -438,7 +416,7 @@
                 <div>
                     <div class="stats-grid">
                         <div class="stat-card">
-                            <div class="stat-number">16-25</div>
+                            <div class="stat-number">16–25</div>
                             <div class="stat-label">Urteko gazteak</div>
                         </div>
                         <div class="stat-card">
@@ -455,7 +433,7 @@
         </div>
     </section>
 
-    <!-- Team Section -->
+    <!-- Team -->
     <section id="taldea" style="background: var(--zuria);">
         <div class="container">
             <h2 class="section-title">Gure Taldea</h2>
@@ -494,7 +472,7 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- Contact -->
     <section id="kontaktua">
         <div class="container">
             <h2 class="section-title">Harremanetarako</h2>
