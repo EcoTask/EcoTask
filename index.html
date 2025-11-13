@@ -3,23 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EcoTask – Gazteak Planetaren Alde</title>
+    <title>EcoTask - Ingurumenaren Alde</title>
     <meta name="description" content="EcoTask: Euskadin sortutako aplikazioa. Gazteak ingurumenaren aldeko ekintzak egitera motibatzen ditu joko moduan. Puntuak, mailak, sariak eta komunitatea.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         :root {
-            --berdea: #1a5f3d;
-            --berde-argia: #2e7d32;
+            --berdea: #2e7d32;
+            --berde-argia: #4caf50;
             --berde-oso-argia: #e8f5e8;
-            --grisa-argia: #f9f9f9;
-            --grisa: #8e8e93;
-            --iluna: #1d1d1f;
+            --grisa-argia: #f8f9fa;
+            --grisa: #6c757d;
+            --iluna: #212529;
             --zuria: #ffffff;
-            --transition: all 0.45s cubic-bezier(0.25, 0.8, 0.25, 1);
-            --radius: 20px;
+            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         * {
             margin: 0;
@@ -31,104 +31,79 @@
             background-color: var(--grisa-argia);
             color: var(--iluna);
             line-height: 1.7;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
             overflow-x: hidden;
         }
-
-        /* === HERO + ANIMATED TOPOGRAPHIC BACKGROUND === */
+        /* Header */
         header {
-            position: relative;
             background: linear-gradient(135deg, var(--berdea) 0%, var(--berde-argia) 100%);
             color: var(--zuria);
             text-align: center;
-            padding: 140px 20px 100px;
+            padding: 100px 20px 70px;
+            position: relative;
             overflow: hidden;
-            isolation: isolate;
         }
-
-        /* Topographic SVG Background */
-        .topo-bg {
+        header::before {
+            content: '';
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" opacity="0.08"><defs><pattern id="topo" x="0" y="0" width="300" height="300" patternUnits="userSpaceOnUse"><path d="M0,150 Q75,100 150,150 T300,150" stroke="%23ffffff" stroke-width="2" fill="none"/><path d="M0,200 Q75,150 150,200 T300,200" stroke="%23ffffff" stroke-width="1.5" fill="none"/><path d="M75,75 Q112.5,50 150,75" stroke="%23ffffff" stroke-width="1" fill="none"/><path d="M150,50 Q187.5,25 225,50" stroke="%23ffffff" stroke-width="1" fill="none"/></pattern></defs><rect width="100%" height="100%" fill="url(%23topo)"/></svg>');
-            background-size: 600px;
-            animation: topo-flow 80s infinite linear;
-            pointer-events: none;
-            z-index: 1;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" opacity="0.07"><defs><pattern id="topo" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse"><path d="M0,100 Q50,50 100,100 T200,100" stroke="%23ffffff" stroke-width="1.5" fill="none"/><path d="M0,150 Q50,100 100,150 T200,150" stroke="%23ffffff" stroke-width="1" fill="none"/><path d="M50,50 Q75,25 100,50" stroke="%23ffffff" stroke-width="1" fill="none"/></pattern></defs><rect width="100%" height="100%" fill="url(%23topo)"/></svg>');
+            background-size: 400px;
+            animation: topo-move 60s infinite linear;
         }
-        @keyframes topo-flow {
+        @keyframes topo-move {
             0% { background-position: 0 0; }
-            100% { background-position: 600px 600px; }
+            100% { background-position: 400px 400px; }
         }
-
-        .hero-content {
+        .logo-container {
             position: relative;
             z-index: 2;
+            margin-bottom: 25px;
         }
-
-        /* LOGOA + IZENA ALBOAN */
-        .header-brand {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 16px;
-            margin-bottom: 32px;
-            flex-wrap: nowrap;
-        }
-        .logo2-img {
-            height: 68px;
-            filter: drop-shadow(0 6px 16px rgba(0,0,0,0.3));
+        .logo-img {
+            height: 100px;
+            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.25));
             transition: var(--transition);
         }
-        .logo2-img:hover {
-            transform: translateY(-3px) scale(1.03);
+        .logo-img:hover {
+            transform: scale(1.05);
         }
         .hero-title {
-            font-size: 3.9rem;
-            font-weight: 800;
-            margin: 0;
-            letter-spacing: -1.4px;
-            text-shadow: 0 4px 14px rgba(0,0,0,0.3);
+            font-family: 'Playfair Display', serif;
+            font-size: 3.2rem;
+            font-weight: 700;
+            margin: 25px 0 18px;
+            text-shadow: 0 3px 8px rgba(0,0,0,0.2);
+            letter-spacing: -0.5px;
         }
-
         .hero-subtitle {
-            font-size: 1.5rem;
-            font-weight: 400;
-            max-width: 780px;
-            margin: 24px auto 0;
-            opacity: 0.96;
-            letter-spacing: -0.4px;
-            line-height: 1.6;
-            padding: 0 12px;
-            width: 100%;
-            box-sizing: border-box;
+            font-size: 1.35rem;
+            font-weight: 300;
+            max-width: 750px;
+            margin: 0 auto;
+            opacity: 0.95;
         }
-
-        /* === NAVIGATION === */
+        /* Navigation */
         nav {
-            background: rgba(255, 255, 255, 0.94);
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
+            background: var(--zuria);
             padding: 20px 0;
             position: sticky;
             top: 0;
             z-index: 1000;
-            border-bottom: 1px solid rgba(0,0,0,0.06);
+            box-shadow: 0 3px 20px rgba(0,0,0,0.1);
+            backdrop-filter: blur(12px);
         }
         .nav-container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
             display: flex;
             justify-content: center;
-            gap: 70px;
-            flex-wrap: wrap;
+            gap: 50px;
         }
         nav a {
             color: var(--iluna);
             text-decoration: none;
             font-weight: 600;
-            font-size: 1.08rem;
+            font-size: 1.1rem;
             padding: 10px 0;
             position: relative;
             transition: var(--transition);
@@ -137,12 +112,13 @@
             content: '';
             position: absolute;
             bottom: 0;
-            left: 0;
+            left: 50%;
             width: 0;
-            height: 3px;
+            height: 3.5px;
             background: var(--berde-argia);
             border-radius: 2px;
             transition: var(--transition);
+            transform: translateX(-50%);
         }
         nav a:hover {
             color: var(--berde-argia);
@@ -150,36 +126,44 @@
         nav a:hover::after {
             width: 100%;
         }
-
-        /* === CONTAINER & SECTIONS === */
+        /* Main Container */
         .container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 24px;
+            padding: 0 20px;
         }
         section {
-            padding: 110px 0;
+            padding: 90px 0;
         }
         .section-title {
             text-align: center;
-            font-size: 2.7rem;
-            font-weight: 700;
-            color: var(--iluna);
-            margin-bottom: 65px;
-            letter-spacing: -0.9px;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            color: var(--berdea);
+            margin-bottom: 60px;
+            position: relative;
         }
-
-        /* === ABOUT === */
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 5px;
+            background: var(--berde-argia);
+            margin: 25px auto 0;
+            border-radius: 3px;
+        }
+        /* About Section */
         .about-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 70px;
+            gap: 60px;
             align-items: center;
+            margin-top: 50px;
         }
         .about-text {
-            font-size: 1.22rem;
-            line-height: 1.85;
-            color: var(--iluna);
+            font-size: 1.18rem;
+            text-align: left;
+            letter-spacing: 0.2px;
         }
         .about-text strong {
             color: var(--berdea);
@@ -187,135 +171,365 @@
         }
         .highlight-box {
             background: var(--berde-oso-argia);
-            padding: 36px;
-            border-radius: var(--radius);
+            padding: 30px;
+            border-radius: 18px;
             border-left: 6px solid var(--berde-argia);
             font-style: italic;
-            font-size: 1.18rem;
-            line-height: 1.9;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.07);
-            transition: var(--transition);
+            font-size: 1.15rem;
+            box-shadow: var(--shadow);
+            line-height: 1.8;
         }
-        .highlight-box:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.12);
-        }
-
-        /* === STATS === */
         .stats-grid {
             display: grid;
-           floor-template-columns: repeat(3, 1fr);
-            gap: 32px;
-            margin-top: 55px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
         }
         .stat-card {
             background: var(--zuria);
-            padding: 36px 20px;
-            border-radius: var(--radius);
+            padding: 35px 25px;
+            border-radius: 18px;
             text-align: center;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+            box-shadow: var(--shadow);
             transition: var(--transition);
         }
         .stat-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 45px rgba(0,0,0,0.11);
+            transform: translateY(-12px);
+            box-shadow: 0 25px 45px rgba(0,0,0,0.15);
         }
         .stat-number {
-            font-size: 3.2rem;
-            font-weight: 800;
+            font-size: 2.8rem;
+            font-weight: 700;
             color: var(--berde-argia);
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             line-height: 1;
         }
         .stat-label {
             color: var(--grisa);
             font-weight: 500;
-            font-size: 1.02rem;
-            letter-spacing: 0.3px;
+            font-size: 1.05rem;
         }
-
-        /* === TEAM === */
+        /* Team Section */
         .team-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-            gap: 38px;
-            margin-top: 55px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 35px;
+            margin-top: 50px;
         }
         .team-card {
             background: var(--zuria);
-            padding: 40px;
-            border-radius: var(--radius);
+            padding: 35px;
+            border-radius: 22px;
             text-align: center;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+            box-shadow: var(--shadow);
             transition: var(--transition);
-            border: 1px solid rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #e9ecef;
+        }
+        .team-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--berdea), var(--berde-argia));
+            border-radius: 22px 22px 0 0;
         }
         .team-card:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.12);
+            transform: translateY(-15px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.14);
             border-color: var(--berde-argia);
         }
         .team-icon {
-            width: 88px;
-            height: 88px;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
-            margin: 0 auto 26px;
+            margin: 0 auto 25px;
             background: linear-gradient(135deg, var(--berde-oso-argia), #d0e8d0);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2.3rem;
+            font-size: 2rem;
             color: var(--berdea);
             transition: var(--transition);
         }
         .team-card:hover .team-icon {
             background: var(--berde-argia);
             color: var(--zuria);
-            transform: scale(1.14);
+            transform: scale(1.1);
         }
         .team-card h3 {
-            font-weight: 700;
-            color: var(--iluna);
-            margin-bottom: 7px;
-            font-size: 1.3rem;
+            color: var(--berdea);
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 1.25rem;
         }
         .team-card .role {
             color: var(--grisa);
-            font-size: 1rem;
+            font-size: 0.98rem;
             font-weight: 500;
-            margin-bottom: 14px;
+            margin-bottom: 12px;
         }
         .team-card p {
             color: var(--grisa);
-            font-size: 1rem;
-            line-height: 1.65;
+            font-size: 0.98rem;
+            line-height: 1.6;
         }
-
-        /* === CONTACT === */
+        /* Contact Section */
         .contact-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-            gap: 38px;
-            margin-top: 55px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 35px;
+            margin-top: 50px;
         }
         .contact-item {
             background: var(--zuria);
-            padding: 40px;
-            border-radius: var(--radius);
+            padding: 35px;
+            border-radius: 22px;
             text-align: center;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+            box-shadow: var(--shadow);
             transition: var(--transition);
-            border: 1px solid rgba(0,0,0,0.05);
+            border: 1px solid #e9ecef;
         }
         .contact-item:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 45px rgba(0,0,0,0.11);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
             border-color: var(--berde-argia);
         }
         .contact-item i {
-            font-size: 2.8rem;
+            font-size: 2.5rem;
             color: var(--berde-argia);
-            margin-bottom: 20px;
+            margin-bottom: 18px;
             transition: var(--transition);
         }
-        .contact-item:hover
+        .contact-item:hover i {
+            color: var(--berdea);
+            transform: scale(1.15);
+        }
+        .contact-item strong {
+            display: block;
+            margin-bottom: 12px;
+            color: var(--iluna);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        .contact-item a {
+            color: var(--berdea);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.05rem;
+            word-break: break-word;
+        }
+        .contact-item a:hover {
+            color: var(--berde-argia);
+            text-decoration: underline;
+        }
+        /* Footer */
+        footer {
+            background: var(--iluna);
+            color: var(--zuria);
+            text-align: center;
+            padding: 50px 20px;
+            margin-top: 60px;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 18px;
+        }
+        .footer-logo {
+            height: 55px;
+            filter: brightness(0) invert(1);
+            opacity: 0.92;
+        }
+        .footer-text {
+            font-size: 0.98rem;
+            opacity: 0.85;
+            letter-spacing: 0.3px;
+        }
+        /* Responsive */
+        @media (max-width: 992px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 50px;
+            }
+            .hero-title {
+                font-size: 2.7rem;
+            }
+        }
+        @media (max-width: 768px) {
+            header {
+                padding: 80px 20px 60px;
+            }
+            .hero-title {
+                font-size: 2.3rem;
+            }
+            .nav-container {
+                flex-direction: column;
+                gap: 18px;
+            }
+            nav a {
+                font-size: 1.05rem;
+            }
+            section {
+                padding: 70px 0;
+            }
+            .section-title {
+                font-size: 2.3rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .logo-img {
+                height: 75px;
+            }
+            .hero-title {
+                font-size: 2rem;
+            }
+            .hero-subtitle {
+                font-size: 1.15rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo-container">
+            <img src="logo.png" alt="EcoTask Logo" class="logo-img">
+        </div>
+        <h1 class="hero-title">EcoTask</h1>
+        <p class="hero-subtitle">Ekintza ekologikoak saritzen dituen jokoa – Gazteak planetaren alde</p>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#zer-gara">Zer gara?</a>
+            <a href="#taldea">Taldea</a>
+            <a href="#kontaktua">Harremanetarako</a>
+        </div>
+    </nav>
+
+    <!-- About Section -->
+    <section id="zer-gara">
+        <div class="container">
+            <h2 class="section-title">Zer egiten dugu?</h2>
+            
+            <div class="about-grid">
+                <div>
+                    <p class="about-text">
+                        <strong>EcoTask</strong> Euskadin sortutako mugikor aplikazio bat da, gazteei ingurumenaren aldeko ekintzak egitera motibatzen dituena, <strong>joko bat bezala</strong>.
+                    </p>
+                    <p class="about-text">
+                        Erabiltzaileek ekintza ekologikoak partekatzen dituzte (birziklatzea, garraio publikoa erabiltzea, zuhaitzak landatzea...), <strong>puntuak irabazten</strong> dituzte eta <strong>sari errealak</strong> lortzen dituzte.
+                    </p>
+                    <div class="highlight-box">
+                        Mailak igotzen dituzu, erronka zailagoak desblokeatzen dituzu eta <strong>lidergo-taulan</strong> agertzen zara. Zure ohiturak aldatzen dituzu, planeta laguntzen duzu eta <strong>divertitzen zara</strong>.
+                    </div>
+                </div>
+                <div>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number">16-25</div>
+                            <div class="stat-label">Urteko gazteak</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">5.000</div>
+                            <div class="stat-label">Erabiltzaile aktibo</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">Euskadi</div>
+                            <div class="stat-label">Osorako proiektua</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="taldea" style="background: var(--zuria);">
+        <div class="container">
+            <h2 class="section-title">Gure Taldea</h2>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-icon"><i class="fas fa-chart-bar"></i></div>
+                    <h3>Danel Berreteaga</h3>
+                    <div class="role">Datuen Analista</div>
+                    <p>Erabiltzaileen datuak aztertzen ditu, portaera ereduak identifikatzen eta aplikazioaren eraginkortasuna hobetzen du.</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-icon"><i class="fas fa-user-tie"></i></div>
+                    <h3>Asier Ayerdi</h3>
+                    <div class="role">Koordinatzaile Nagusia</div>
+                    <p>Proiektu osoa zuzentzen du, estrategia definitzen eta taldearen lana koordinatzen du.</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-icon"><i class="fas fa-bullhorn"></i></div>
+                    <h3>Aner Illaro</h3>
+                    <div class="role">Marketing Arduraduna</div>
+                    <p>Komunikazio-estrategia, sare sozialak eta ikastetxeekin lankidetza kudeatzen ditu.</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-icon"><i class="fas fa-paint-brush"></i></div>
+                    <h3>Luken Bustinza</h3>
+                    <div class="role">Diseinatzaile Grafikoa</div>
+                    <p>Identitate bisuala, UI/UX eta aplikazioaren esperientzia erabilerraza sortzen du.</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-icon"><i class="fas fa-users"></i></div>
+                    <h3>Olaia Aretxaga</h3>
+                    <div class="role">Giza Baliabideen Arduraduna</div>
+                    <p>Taldearen kudeaketa, hautaketa, prestakuntza eta barne-kultura sustatzen ditu.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="kontaktua">
+        <div class="container">
+            <h2 class="section-title">Harremanetarako</h2>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <strong>Posta elektronikoa</strong>
+                    <a href="mailto:info@ecotask.eus">info@ecotask.eus</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-instagram"></i>
+                    <strong>Instagram</strong>
+                    <a href="https://instagram.com/ecotask" target="_blank">@ecotask</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-tiktok"></i>
+                    <strong>TikTok</strong>
+                    <a href="https://tiktok.com/@ecotask" target="_blank">@ecotask</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-x-twitter"></i>
+                    <strong>X (Twitter)</strong>
+                    <a href="https://x.com/ecotask" target="_blank">@ecotask</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <img src="logo.png" alt="EcoTask Logo" class="footer-logo">
+            <p class="footer-text">© 2025 EcoTask. Eskubide guztiak erreserbatuak. | Euskadin sortua</p>
+        </div>
+    </footer>
+
+</body>
+</html>
