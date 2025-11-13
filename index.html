@@ -18,8 +18,8 @@
             --grisa: #8e8e93;
             --iluna: #1d1d1f;
             --zuria: #ffffff;
-            --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-            --radius: 18px;
+            --transition: all 0.45s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --radius: 20px;
         }
         * {
             margin: 0;
@@ -33,76 +33,92 @@
             line-height: 1.7;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
         }
-        /* Header – Apple-style hero */
+
+        /* === HERO + ANIMATED TOPOGRAPHIC BACKGROUND === */
         header {
+            position: relative;
             background: linear-gradient(135deg, var(--berdea) 0%, var(--berde-argia) 100%);
             color: var(--zuria);
             text-align: center;
             padding: 140px 20px 100px;
-            position: relative;
             overflow: hidden;
+            isolation: isolate;
         }
-        header::before {
-            content: '';
+
+        /* Topographic SVG Background */
+        .topo-bg {
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.15) 0%, transparent 50%),
-                        radial-gradient(circle at 70% 80%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" opacity="0.08"><defs><pattern id="topo" x="0" y="0" width="300" height="300" patternUnits="userSpaceOnUse"><path d="M0,150 Q75,100 150,150 T300,150" stroke="%23ffffff" stroke-width="2" fill="none"/><path d="M0,200 Q75,150 150,200 T300,200" stroke="%23ffffff" stroke-width="1.5" fill="none"/><path d="M75,75 Q112.5,50 150,75" stroke="%23ffffff" stroke-width="1" fill="none"/><path d="M150,50 Q187.5,25 225,50" stroke="%23ffffff" stroke-width="1" fill="none"/></pattern></defs><rect width="100%" height="100%" fill="url(%23topo)"/></svg>');
+            background-size: 600px;
+            animation: topo-flow 80s infinite linear;
             pointer-events: none;
+            z-index: 1;
         }
-        .logo-container {
+        @keyframes topo-flow {
+            0% { background-position: 0 0; }
+            100% { background-position: 600px 600px; }
+        }
+
+        .hero-content {
             position: relative;
             z-index: 2;
-            margin-bottom: 28px;
+        }
+        .logo-container {
+            margin-bottom: 32px;
         }
         .logo-img {
-            height: 110px;
-            filter: drop-shadow(0 6px 16px rgba(0,0,0,0.3));
+            height: 120px;
+            filter: drop-shadow(0 8px 20px rgba(0,0,0,0.35));
             transition: var(--transition);
+            background: transparent !important;
         }
         .logo-img:hover {
-            transform: translateY(-4px);
+            transform: translateY(-5px) scale(1.02);
         }
         .hero-title {
-            font-size: 3.8rem;
+            font-size: 3.9rem;
             font-weight: 800;
-            margin: 0 0 16px;
-            letter-spacing: -1.2px;
-            text-shadow: 0 4px 12px rgba(0,0,0,0.25);
+            margin: 0 0 18px;
+            letter-spacing: -1.4px;
+            text-shadow: 0 4px 14px rgba(0,0,0,0.3);
         }
         .hero-subtitle {
-            font-size: 1.45rem;
+            font-size: 1.5rem;
             font-weight: 400;
-            max-width: 720px;
+            max-width: 760px;
             margin: 0 auto;
-            opacity: 0.95;
-            letter-spacing: -0.3px;
+            opacity: 0.96;
+            letter-spacing: -0.4px;
         }
-        /* Navigation – Clean & sticky */
+
+        /* === NAVIGATION === */
         nav {
-            background: rgba(255, 255, 255, 0.92);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            padding: 18px 0;
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            padding: 20px 0;
             position: sticky;
             top: 0;
             z-index: 1000;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
+            border-bottom: 1px solid rgba(0,0,0,0.06);
         }
         .nav-container {
             max-width: 1000px;
             margin: 0 auto;
             display: flex;
             justify-content: center;
-            gap: 60px;
+            gap: 70px;
+            flex-wrap: wrap;
         }
         nav a {
             color: var(--iluna);
             text-decoration: none;
             font-weight: 600;
-            font-size: 1.05rem;
-            padding: 8px 0;
+            font-size: 1.08rem;
+            padding: 10px 0;
             position: relative;
             transition: var(--transition);
         }
@@ -112,7 +128,7 @@
             bottom: 0;
             left: 0;
             width: 0;
-            height: 2.5px;
+            height: 3px;
             background: var(--berde-argia);
             border-radius: 2px;
             transition: var(--transition);
@@ -123,33 +139,35 @@
         nav a:hover::after {
             width: 100%;
         }
-        /* Container */
+
+        /* === CONTAINER & SECTIONS === */
         .container {
             max-width: 1000px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 24px;
         }
         section {
-            padding: 100px 0;
+            padding: 110px 0;
         }
         .section-title {
             text-align: center;
-            font-size: 2.6rem;
+            font-size: 2.7rem;
             font-weight: 700;
             color: var(--iluna);
-            margin-bottom: 60px;
-            letter-spacing: -0.8px;
+            margin-bottom: 65px;
+            letter-spacing: -0.9px;
         }
-        /* About – Grid with subtle card */
+
+        /* === ABOUT === */
         .about-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 60px;
+            gap: 70px;
             align-items: center;
         }
         .about-text {
-            font-size: 1.2rem;
-            line-height: 1.8;
+            font-size: 1.22rem;
+            line-height: 1.85;
             color: var(--iluna);
         }
         .about-text strong {
@@ -158,160 +176,167 @@
         }
         .highlight-box {
             background: var(--berde-oso-argia);
-            padding: 32px;
+            padding: 36px;
             border-radius: var(--radius);
-            border-left: 5px solid var(--berde-argia);
+            border-left: 6px solid var(--berde-argia);
             font-style: italic;
-            font-size: 1.15rem;
-            line-height: 1.8;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+            font-size: 1.18rem;
+            line-height: 1.9;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.07);
             transition: var(--transition);
         }
         .highlight-box:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 16px 40px rgba(0,0,0,0.1);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.12);
         }
-        /* Stats – Clean cards */
+
+        /* === STATS – FIXED MOBILE === */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            margin-top: 50px;
+            gap: 32px;
+            margin-top: 55px;
         }
         .stat-card {
             background: var(--zuria);
-            padding: 32px 20px;
+            padding: 36px 20px;
             border-radius: var(--radius);
             text-align: center;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.06);
             transition: var(--transition);
         }
         .stat-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 16px 35px rgba(0,0,0,0.1);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 45px rgba(0,0,0,0.11);
         }
         .stat-number {
-            font-size: 3rem;
+            font-size: 3.2rem;
             font-weight: 800;
             color: var(--berde-argia);
-            margin-bottom: 8px;
+            margin-bottom: 10px;
+            line-height: 1;
         }
         .stat-label {
             color: var(--grisa);
             font-weight: 500;
-            font-size: 1rem;
+            font-size: 1.02rem;
+            letter-spacing: 0.3px;
         }
-        /* Team – Minimal icons, no photos */
+
+        /* === TEAM === */
         .team-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 35px;
-            margin-top: 50px;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 38px;
+            margin-top: 55px;
         }
         .team-card {
             background: var(--zuria);
-            padding: 36px;
+            padding: 40px;
             border-radius: var(--radius);
             text-align: center;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.06);
             transition: var(--transition);
-            border: 1px solid rgba(0,0,0,0.04);
+            border: 1px solid rgba(0,0,0,0.05);
         }
         .team-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            transform: translateY(-12px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.12);
             border-color: var(--berde-argia);
         }
         .team-icon {
-            width: 84px;
-            height: 84px;
+            width: 88px;
+            height: 88px;
             border-radius: 50%;
-            margin: 0 auto 24px;
+            margin: 0 auto 26px;
             background: linear-gradient(135deg, var(--berde-oso-argia), #d0e8d0);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2.1rem;
+            font-size: 2.3rem;
             color: var(--berdea);
             transition: var(--transition);
         }
         .team-card:hover .team-icon {
             background: var(--berde-argia);
             color: var(--zuria);
-            transform: scale(1.12);
+            transform: scale(1.14);
         }
         .team-card h3 {
             font-weight: 700;
             color: var(--iluna);
-            margin-bottom: 6px;
-            font-size: 1.25rem;
+            margin-bottom: 7px;
+            font-size: 1.3rem;
         }
         .team-card .role {
             color: var(--grisa);
-            font-size: 0.98rem;
+            font-size: 1rem;
             font-weight: 500;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
         }
         .team-card p {
             color: var(--grisa);
-            font-size: 0.98rem;
-            line-height: 1.6;
+            font-size: 1rem;
+            line-height: 1.65;
         }
-        /* Contact – Clean cards */
+
+        /* === CONTACT === */
         .contact-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 35px;
-            margin-top: 50px;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 38px;
+            margin-top: 55px;
         }
         .contact-item {
             background: var(--zuria);
-            padding: 36px;
+            padding: 40px;
             border-radius: var(--radius);
             text-align: center;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.06);
             transition: var(--transition);
-            border: 1px solid rgba(0,0,0,0.04);
+            border: 1px solid rgba(0,0,0,0.05);
         }
         .contact-item:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 16px 35px rgba(0,0,0,0.1);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 45px rgba(0,0,0,0.11);
             border-color: var(--berde-argia);
         }
         .contact-item i {
-            font-size: 2.6rem;
+            font-size: 2.8rem;
             color: var(--berde-argia);
-            margin-bottom: 18px;
+            margin-bottom: 20px;
             transition: var(--transition);
         }
         .contact-item:hover i {
             color: var(--berdea);
-            transform: scale(1.15);
+            transform: scale(1.18);
         }
         .contact-item strong {
             display: block;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             color: var(--iluna);
             font-weight: 600;
-            font-size: 1.1rem;
+            font-size: 1.12rem;
         }
         .contact-item a {
             color: var(--berdea);
             text-decoration: none;
             font-weight: 500;
-            font-size: 1.05rem;
+            font-size: 1.08rem;
+            word-break: break-all;
         }
         .contact-item a:hover {
             color: var(--berde-argia);
             text-decoration: underline;
         }
-        /* Footer – Minimal & elegant */
+
+        /* === FOOTER === */
         footer {
             background: var(--iluna);
             color: var(--zuria);
             text-align: center;
-            padding: 60px 20px;
-            margin-top: 80px;
+            padding: 70px 20px;
+            margin-top: 90px;
         }
         .footer-content {
             max-width: 1000px;
@@ -319,76 +344,105 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 20px;
+            gap: 22px;
         }
         .footer-logo {
-            height: 60px;
+            height: 65px;
             filter: brightness(0) invert(1);
-            opacity: 0.9;
+            opacity: 0.92;
             transition: var(--transition);
         }
         .footer-logo:hover {
             opacity: 1;
-            transform: scale(1.05);
+            transform: scale(1.06);
         }
         .footer-text {
-            font-size: 0.95rem;
-            opacity: 0.8;
-            letter-spacing: 0.3px;
+            font-size: 0.98rem;
+            opacity: 0.82;
+            letter-spacing: 0.4px;
         }
-        /* Responsive */
+
+        /* === RESPONSIVE – MOBILE FIRST === */
         @media (max-width: 992px) {
             .about-grid, .stats-grid {
                 grid-template-columns: 1fr;
                 text-align: center;
+                gap: 50px;
             }
             .hero-title {
-                font-size: 3.2rem;
+                font-size: 3.3rem;
+            }
+            .hero-subtitle {
+                font-size: 1.35rem;
             }
         }
         @media (max-width: 768px) {
             header {
-                padding: 100px 20px 80px;
+                padding: 110px 20px 80px;
             }
             .hero-title {
-                font-size: 2.8rem;
+                font-size: 2.9rem;
+            }
+            .hero-subtitle {
+                font-size: 1.25rem;
             }
             .nav-container {
                 flex-direction: column;
-                gap: 20px;
+                gap: 22px;
             }
             section {
-                padding: 80px 0;
+                padding: 85px 0;
             }
             .section-title {
-                font-size: 2.3rem;
+                font-size: 2.4rem;
+            }
+            .team-grid, .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            .stat-number {
+                font-size: 2.8rem;
             }
         }
         @media (max-width: 480px) {
             .logo-img, .footer-logo {
-                height: 70px;
+                height: 78px;
             }
             .hero-title {
-                font-size: 2.4rem;
+                font-size: 2.5rem;
             }
             .hero-subtitle {
-                font-size: 1.2rem;
+                font-size: 1.18rem;
+            }
+            .section-title {
+                font-size: 2.1rem;
+            }
+            .about-text, .highlight-box, .team-card p, .contact-item a {
+                font-size: 1rem;
+            }
+            .stat-card {
+                padding: 28px 16px;
+            }
+            .stat-number {
+                font-size: 2.5rem;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header -->
+    <!-- HERO -->
     <header>
-        <div class="logo-container">
-            <img src="logo.png" alt="EcoTask Logo" class="logo-img">
+        <div class="topo-bg"></div>
+        <div class="hero-content">
+            <div class="logo-container">
+                <img src="logo.png" alt="EcoTask Logo" class="logo-img">
+            </div>
+            <h1 class="hero-title">EcoTask</h1>
+            <p class="hero-subtitle">Ekintza ekologikoak saritzen dituen jokoa – Gazteak planetaren alde</p>
         </div>
-        <h1 class="hero-title">EcoTask</h1>
-        <p class="hero-subtitle">Ekintza ekologikoak saritzen dituen jokoa – Gazteak planetaren alde</p>
     </header>
 
-    <!-- Navigation -->
+    <!-- NAVIGATION -->
     <nav>
         <div class="nav-container">
             <a href="#zer-gara">Zer gara?</a>
@@ -397,7 +451,7 @@
         </div>
     </nav>
 
-    <!-- About -->
+    <!-- ABOUT -->
     <section id="zer-gara">
         <div class="container">
             <h2 class="section-title">Zer egiten dugu?</h2>
@@ -433,7 +487,7 @@
         </div>
     </section>
 
-    <!-- Team -->
+    <!-- TEAM -->
     <section id="taldea" style="background: var(--zuria);">
         <div class="container">
             <h2 class="section-title">Gure Taldea</h2>
@@ -472,7 +526,7 @@
         </div>
     </section>
 
-    <!-- Contact -->
+    <!-- CONTACT -->
     <section id="kontaktua">
         <div class="container">
             <h2 class="section-title">Harremanetarako</h2>
@@ -501,7 +555,7 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- FOOTER -->
     <footer>
         <div class="footer-content">
             <img src="logo.png" alt="EcoTask Logo" class="footer-logo">
