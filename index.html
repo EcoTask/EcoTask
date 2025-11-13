@@ -66,32 +66,43 @@
             position: relative;
             z-index: 2;
         }
-        .logo-container {
+
+        /* LOGOA + IZENA ALBOAN */
+        .header-brand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
             margin-bottom: 32px;
+            flex-wrap: nowrap;
         }
-        .logo-img {
-            height: 120px;
-            filter: drop-shadow(0 8px 20px rgba(0,0,0,0.35));
+        .logo2-img {
+            height: 68px;
+            filter: drop-shadow(0 6px 16px rgba(0,0,0,0.3));
             transition: var(--transition);
-            background: transparent !important;
         }
-        .logo-img:hover {
-            transform: translateY(-5px) scale(1.02);
+        .logo2-img:hover {
+            transform: translateY(-3px) scale(1.03);
         }
         .hero-title {
             font-size: 3.9rem;
             font-weight: 800;
-            margin: 0 0 18px;
+            margin: 0;
             letter-spacing: -1.4px;
             text-shadow: 0 4px 14px rgba(0,0,0,0.3);
         }
+
         .hero-subtitle {
             font-size: 1.5rem;
             font-weight: 400;
-            max-width: 760px;
-            margin: 0 auto;
+            max-width: 780px;
+            margin: 24px auto 0;
             opacity: 0.96;
             letter-spacing: -0.4px;
+            line-height: 1.6;
+            padding: 0 12px;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         /* === NAVIGATION === */
@@ -190,10 +201,10 @@
             box-shadow: 0 20px 50px rgba(0,0,0,0.12);
         }
 
-        /* === STATS – FIXED MOBILE === */
+        /* === STATS === */
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+           floor-template-columns: repeat(3, 1fr);
             gap: 32px;
             margin-top: 55px;
         }
@@ -307,261 +318,4 @@
             margin-bottom: 20px;
             transition: var(--transition);
         }
-        .contact-item:hover i {
-            color: var(--berdea);
-            transform: scale(1.18);
-        }
-        .contact-item strong {
-            display: block;
-            margin-bottom: 12px;
-            color: var(--iluna);
-            font-weight: 600;
-            font-size: 1.12rem;
-        }
-        .contact-item a {
-            color: var(--berdea);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1.08rem;
-            word-break: break-all;
-        }
-        .contact-item a:hover {
-            color: var(--berde-argia);
-            text-decoration: underline;
-        }
-
-        /* === FOOTER === */
-        footer {
-            background: var(--iluna);
-            color: var(--zuria);
-            text-align: center;
-            padding: 70px 20px;
-            margin-top: 90px;
-        }
-        .footer-content {
-            max-width: 1000px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 22px;
-        }
-        .footer-logo {
-            height: 65px;
-            filter: brightness(0) invert(1);
-            opacity: 0.92;
-            transition: var(--transition);
-        }
-        .footer-logo:hover {
-            opacity: 1;
-            transform: scale(1.06);
-        }
-        .footer-text {
-            font-size: 0.98rem;
-            opacity: 0.82;
-            letter-spacing: 0.4px;
-        }
-
-        /* === RESPONSIVE – MOBILE FIRST === */
-        @media (max-width: 992px) {
-            .about-grid, .stats-grid {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 50px;
-            }
-            .hero-title {
-                font-size: 3.3rem;
-            }
-            .hero-subtitle {
-                font-size: 1.35rem;
-            }
-        }
-        @media (max-width: 768px) {
-            header {
-                padding: 110px 20px 80px;
-            }
-            .hero-title {
-                font-size: 2.9rem;
-            }
-            .hero-subtitle {
-                font-size: 1.25rem;
-            }
-            .nav-container {
-                flex-direction: column;
-                gap: 22px;
-            }
-            section {
-                padding: 85px 0;
-            }
-            .section-title {
-                font-size: 2.4rem;
-            }
-            .team-grid, .contact-grid {
-                grid-template-columns: 1fr;
-            }
-            .stat-number {
-                font-size: 2.8rem;
-            }
-        }
-        @media (max-width: 480px) {
-            .logo-img, .footer-logo {
-                height: 78px;
-            }
-            .hero-title {
-                font-size: 2.5rem;
-            }
-            .hero-subtitle {
-                font-size: 1.18rem;
-            }
-            .section-title {
-                font-size: 2.1rem;
-            }
-            .about-text, .highlight-box, .team-card p, .contact-item a {
-                font-size: 1rem;
-            }
-            .stat-card {
-                padding: 28px 16px;
-            }
-            .stat-number {
-                font-size: 2.5rem;
-            }
-        }
-    </style>
-</head>
-<body>
-
-    <!-- HERO -->
-    <header>
-        <div class="topo-bg"></div>
-        <div class="hero-content">
-            <div class="logo-container">
-                <img src="logo.png" alt="EcoTask Logo" class="logo-img">
-            </div>
-            <h1 class="hero-title">EcoTask</h1>
-            <p class="hero-subtitle">Ekintza ekologikoak saritzen dituen jokoa – Gazteak planetaren alde</p>
-        </div>
-    </header>
-
-    <!-- NAVIGATION -->
-    <nav>
-        <div class="nav-container">
-            <a href="#zer-gara">Zer gara?</a>
-            <a href="#taldea">Taldea</a>
-            <a href="#kontaktua">Harremanetarako</a>
-        </div>
-    </nav>
-
-    <!-- ABOUT -->
-    <section id="zer-gara">
-        <div class="container">
-            <h2 class="section-title">Zer egiten dugu?</h2>
-            <div class="about-grid">
-                <div>
-                    <p class="about-text">
-                        <strong>EcoTask</strong> Euskadin sortutako mugikor aplikazio bat da, gazteei ingurumenaren aldeko ekintzak egitera motibatzen dituena, <strong>joko bat bezala</strong>.
-                    </p>
-                    <p class="about-text">
-                        Erabiltzaileek ekintza ekologikoak partekatzen dituzte (birziklatzea, garraio publikoa erabiltzea, zuhaitzak landatzea...), <strong>puntuak irabazten</strong> dituzte eta <strong>sari errealak</strong> lortzen dituzte.
-                    </p>
-                    <div class="highlight-box">
-                        Mailak igotzen dituzu, erronka zailagoak desblokeatzen dituzu eta <strong>lidergo-taulan</strong> agertzen zara. Zure ohiturak aldatzen dituzu, planeta laguntzen duzu eta <strong>divertitzen zara</strong>.
-                    </div>
-                </div>
-                <div>
-                    <div class="stats-grid">
-                        <div class="stat-card">
-                            <div class="stat-number">16–25</div>
-                            <div class="stat-label">Urteko gazteak</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-number">5.000</div>
-                            <div class="stat-label">Erabiltzaile aktibo</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-number">Euskadi</div>
-                            <div class="stat-label">Osorako proiektua</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- TEAM -->
-    <section id="taldea" style="background: var(--zuria);">
-        <div class="container">
-            <h2 class="section-title">Gure Taldea</h2>
-            <div class="team-grid">
-                <div class="team-card">
-                    <div class="team-icon"><i class="fas fa-chart-bar"></i></div>
-                    <h3>Danel Berreteaga</h3>
-                    <div class="role">Datuen Analista</div>
-                    <p>Erabiltzaileen datuak aztertzen ditu, portaera ereduak identifikatzen eta aplikazioaren eraginkortasuna hobetzen du.</p>
-                </div>
-                <div class="team-card">
-                    <div class="team-icon"><i class="fas fa-user-tie"></i></div>
-                    <h3>Asier Ayerdi</h3>
-                    <div class="role">Koordinatzaile Nagusia</div>
-                    <p>Proiektu osoa zuzentzen du, estrategia definitzen eta taldearen lana koordinatzen du.</p>
-                </div>
-                <div class="team-card">
-                    <div class="team-icon"><i class="fas fa-bullhorn"></i></div>
-                    <h3>Aner Illaro</h3>
-                    <div class="role">Marketing Arduraduna</div>
-                    <p>Komunikazio-estrategia, sare sozialak eta ikastetxeekin lankidetza kudeatzen ditu.</p>
-                </div>
-                <div class="team-card">
-                    <div class="team-icon"><i class="fas fa-paint-brush"></i></div>
-                    <h3>Luken Bustinza</h3>
-                    <div class="role">Diseinatzaile Grafikoa</div>
-                    <p>Identitate bisuala, UI/UX eta aplikazioaren esperientzia erabilerraza sortzen du.</p>
-                </div>
-                <div class="team-card">
-                    <div class="team-icon"><i class="fas fa-users"></i></div>
-                    <h3>Olaia Aretxaga</h3>
-                    <div class="role">Giza Baliabideen Arduraduna</div>
-                    <p>Taldearen kudeaketa, hautaketa, prestakuntza eta barne-kultura sustatzen ditu.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="kontaktua">
-        <div class="container">
-            <h2 class="section-title">Harremanetarako</h2>
-            <div class="contact-grid">
-                <div class="contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <strong>Posta elektronikoa</strong>
-                    <a href="mailto:info@ecotask.eus">info@ecotask.eus</a>
-                </div>
-                <div class="contact-item">
-                    <i class="fab fa-instagram"></i>
-                    <strong>Instagram</strong>
-                    <a href="https://instagram.com/ecotask" target="_blank">@ecotask</a>
-                </div>
-                <div class="contact-item">
-                    <i class="fab fa-tiktok"></i>
-                    <strong>TikTok</strong>
-                    <a href="https://tiktok.com/@ecotask" target="_blank">@ecotask</a>
-                </div>
-                <div class="contact-item">
-                    <i class="fab fa-x-twitter"></i>
-                    <strong>X (Twitter)</strong>
-                    <a href="https://x.com/ecotask" target="_blank">@ecotask</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer>
-        <div class="footer-content">
-            <img src="logo.png" alt="EcoTask Logo" class="footer-logo">
-            <p class="footer-text">© 2025 EcoTask. Eskubide guztiak erreserbatuak. | Euskadin sortua</p>
-        </div>
-    </footer>
-
-</body>
-</html>
+        .contact-item:hover
