@@ -72,10 +72,50 @@ footer{background:var(--iluna);color:var(--zuria);padding:50px 20px;text-align:c
 .footer-logo{height:55px;background:var(--zuria);padding:6px;border-radius:12px;}
 
 .fade-in{opacity:0;transform:translateY(20px);transition:0.7s ease;}
-.fade-in.visible{opacity:1;transform:translateY(0);}
+
+/* ===== Login Form Styles ===== */
+#login-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: 0 auto;
+  gap: 15px;
+}
+#login-form input {
+  padding: 12px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+#login-form button {
+  padding: 12px;
+  background-color: #4caf50;
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+#login-form button:hover {
+  background-color: #2e7d32;
+}
 </style>
 </head>
 <body>
+
+<!-- ===== Login Section ===== -->
+<section id="login" class="fade-in">
+  <div class="container">
+    <h2 class="section-title">Sartu zure kontura</h2>
+    <form id="login-form">
+      <input type="text" id="username" placeholder="Erabiltzaile izena" required>
+      <input type="password" id="password" placeholder="Pasahitza" required>
+      <button type="submit">Sartu</button>
+    </form>
+    <p id="login-message" style="margin-top:10px;color:red;font-weight:600;"></p>
+  </div>
+</section>
 
 <header>
 <img src="logo.png" class="logo-img" alt="EcoTask Logo">
@@ -93,6 +133,15 @@ footer{background:var(--iluna);color:var(--zuria);padding:50px 20px;text-align:c
 </div>
 </nav>
 
+<!-- ===== Dashboard Section (hidden by default) ===== -->
+<section id="dashboard" class="fade-in" style="display:none;">
+  <div class="container">
+    <h2 class="section-title">Ongi etorri, <span id="user-name"></span>!</h2>
+    <p>Zure puntu kopurua: <strong id="user-points"></strong></p>
+    <p>Hemen zure erronkak eta sariak ikus ditzakezu.</p>
+  </div>
+</section>
+
 <section id="zer-gara" class="fade-in">
 <div class="container">
 <h2 class="section-title">Zer eskaintzen dizu EcoTask-ek?</h2>
@@ -103,7 +152,7 @@ footer{background:var(--iluna);color:var(--zuria);padding:50px 20px;text-align:c
 <div class="highlight-box">Gazteen arteko lehiaketa osasuntsua, motibazioa eta planetaren aldeko ekintzak modu erraz batean.</div>
 </div>
 <div class="stats-grid">
-<div class="stat-card"><div class="stat-number"><span>16-25</span></div>Urteko gazteak</div>
+<div class="stat-card"><div class="stat-number"><span>0</span></div>Puntuak</div>
 <div class="stat-card"><div class="stat-number"><span>5.000</span></div>Erabiltzaile aktibo</div>
 <div class="stat-card"><div class="stat-number"><span>Euskadi</span></div>Proiektua</div>
 </div>
@@ -189,10 +238,60 @@ footer{background:var(--iluna);color:var(--zuria);padding:50px 20px;text-align:c
 <p>© 2025 EcoTask — Euskadin sortua</p>
 </footer>
 
+<!-- ===== Full Script ===== -->
 <script>
-const faders=document.querySelectorAll('.fade-in');
-const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting) entry.target.classList.add('visible');});},{threshold:0.2});
-faders.forEach(fader=>observer.observe(fader));
+// ===== Fade-in sections =====
+const faders = document.querySelectorAll('.fade-in');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.2 });
+faders.forEach(fader => observer.observe(fader));
+
+// ===== Demo Users =====
+const demoUsers = [
+  { username: 'danel', password: '1234', points: 120 },
+  { username: 'asier', password: 'abcd', points: 75 },
+  { username: 'aner', password: 'qwer', points: 50 }
+];
+
+// ===== DOM Elements =====
+const loginForm = document.getElementById('login-form');
+const loginMessage = document.getElementById('login-message');
+const dashboard = document.getElementById('dashboard');
+const userNameEl = document.getElementById('user-name');
+const userPointsEl = document.getElementById('user-points');
+const loginSection = document.getElementById('login');
+const statNumberEl = document.querySelector('.stats-grid .stat-number span');
+
+// ===== Login Form Handler =====
+loginForm.addEventListener('submit', function(e) {
+  e.preventDefault();
+  const username = document.getElementById('username').value.trim();
+  const password = document.getElementById('password').value.trim();
+
+  const user = demoUsers.find(u => u.username === username && u.password === password);
+
+  if (user) {
+    // Hide login, show dashboard
+    loginSection.style.display = 'none';
+    dashboard.style.display = 'block';
+
+    // Fill user info
+    userNameEl.textContent = user.username;
+    userPointsEl.textContent = user.points;
+
+    // Update stat grid (first stat card)
+    if(statNumberEl) statNumberEl.textContent = user.points;
+
+    // Scroll to dashboard
+    dashboard.scrollIntoView({ behavior: 'smooth' });
+  } else {
+    loginMessage.textContent = 'Erabiltzaile izena edo pasahitza okerra.';
+  }
+});
 </script>
+
 </body>
 </html>
