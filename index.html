@@ -1,298 +1,299 @@
 <!DOCTYPE html>
 <html lang="eu">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EcoTask - Ingurumenaren Alde</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EcoTask - Ingurumenaren Alde</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    <style>
-        :root {
-            --berdea: #2e7d32;
-            --berde-argia: #4caf50;
-            --berde-oso-argia: #e8f5e8;
-            --grisa-argia: #f8f9fa;
-            --grisa: #6c757d;
-            --iluna: #212529;
-            --zuria: #ffffff;
-            --shadow: 0 10px 30px rgba(0,0,0,0.08);
-            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+<style>
+:root {
+    --berdea: #2e7d32;
+    --berde-argia: #4caf50;
+    --berde-oso-argia: #e8f5e8;
+    --grisa-argia: #f8f9fa;
+    --grisa: #6c757d;
+    --iluna: #212529;
+    --zuria: #ffffff;
+    --shadow: 0 10px 30px rgba(0,0,0,0.08);
+    --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--grisa-argia);
-            color: var(--iluna);
-            line-height: 1.7;
-            overflow-x: hidden;
-        }
+body {
+    font-family: 'Inter', sans-serif;
+    color: var(--iluna);
+    line-height: 1.7;
+    overflow-x: hidden;
+    background-color: var(--grisa-argia);
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><g fill='none' stroke='%23cccccc' stroke-width='0.6' opacity='0.28'><path d='M100 200c30-60 80-60 110 0s80 60 110 0'/><path d='M0 100c40-40 80-40 120 0s80 40 120 0'/><path d='M200 300c50-80 100-80 150 0'/></g></svg>");
+    background-size: 600px;
+    background-repeat: repeat;
+}
 
-        .fade {
-            opacity: 0;
-            transform: translateY(35px);
-            transition: 0.6s ease;
-        }
-        .fade.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+header {
+    background: linear-gradient(135deg, var(--berdea), var(--berde-argia));
+    color: var(--zuria);
+    text-align: center;
+    padding: 110px 20px 160px;
+    position: relative;
+    overflow: hidden;
+}
 
-        header {
-            background: linear-gradient(135deg, var(--berdea), var(--berde-argia));
-            color: var(--zuria);
-            text-align: center;
-            padding: 110px 20px 160px;
-            position: relative;
-            overflow: hidden;
-        }
+.logo-img {
+    height: 100px;
+    background: var(--zuria);
+    padding: 8px;
+    border-radius: 16px;
+}
 
-        .logo-img {
-            height: 100px;
-            background: var(--zuria);
-            padding: 8px;
-            border-radius: 16px;
-        }
+.hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.2rem;
+    font-weight: 700;
+    margin-top: 25px;
+}
 
-        .hero-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.2rem;
-            font-weight: 700;
-            margin-top: 25px;
-        }
+.hero-subtitle {
+    font-size: 1.3rem;
+    max-width: 700px;
+    margin: 10px auto 0;
+}
 
-        .hero-subtitle {
-            font-size: 1.3rem;
-            max-width: 700px;
-            margin: 10px auto 0;
-        }
+.header-waves {
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 100%;
+    height: 160px;
+    background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 1440 320' xmlns='http://www.w3.org/2000/svg'><path fill='%23ffffff' fill-opacity='0.25' d='M0,64L48,101.3C96,139,192,213,288,218.7C384,224,480,160,576,144C672,128,768,160,864,160C960,160,1056,128,1152,128C1248,128,1344,160,1392,176L1440,192L1440,320L0,320Z'/></svg>");
+    background-size: cover;
+    pointer-events: none;
+}
 
-        .header-waves {
-            position: absolute;
-            bottom: -1px;
-            left: 0;
-            width: 100%;
-            height: 160px;
-            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg"><path fill="%23ffffff" fill-opacity="0.35" d="M0,160L60,170.7C120,181,240,203,360,213.3C480,224,600,224,720,197.3C840,171,960,117,1080,112C1200,107,1320,149,1380,170.7L1440,192V320H0Z"/></svg>');
-            background-size: cover;
-        }
+nav {
+    background: var(--zuria);
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 3px 20px rgba(0,0,0,0.08);
+}
 
-        nav {
-            background: var(--zuria);
-            padding: 20px 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 3px 20px rgba(0,0,0,0.08);
-        }
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
 
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: center;
-            gap: 50px;
-        }
+nav a {
+    color: var(--iluna);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    position: relative;
+}
 
-        nav a {
-            color: var(--iluna);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            position: relative;
-        }
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background: var(--berde-argia);
+    border-radius: 3px;
+    transform: translateX(-50%);
+    transition: var(--transition);
+}
 
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 50%;
-            width: 0;
-            height: 3px;
-            background: var(--berde-argia);
-            border-radius: 3px;
-            transform: translateX(-50%);
-            transition: var(--transition);
-        }
+nav a:hover::after {
+    width: 100%;
+}
 
-        nav a:hover::after {
-            width: 100%;
-        }
+section {
+    padding: 90px 20px;
+}
 
-        section {
-            padding: 90px 20px;
-        }
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+.section-title {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.7rem;
+    color: var(--berdea);
+    margin-bottom: 60px;
+}
 
-        .section-title {
-            text-align: center;
-            font-family: 'Playfair Display', serif;
-            font-size: 2.7rem;
-            color: var(--berdea);
-            margin-bottom: 60px;
-        }
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
 
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
+.about-text {
+    font-size: 1.15rem;
+}
 
-        .about-text {
-            font-size: 1.15rem;
-        }
+.highlight-box {
+    background: var(--berde-oso-argia);
+    padding: 28px;
+    border-radius: 16px;
+    border-left: 6px solid var(--berde-argia);
+    box-shadow: var(--shadow);
+    margin-top: 20px;
+    font-style: italic;
+}
 
-        .highlight-box {
-            background: var(--berde-oso-argia);
-            padding: 28px;
-            border-radius: 16px;
-            border-left: 6px solid var(--berde-argia);
-            box-shadow: var(--shadow);
-            margin-top: 20px;
-        }
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    margin-top: 40px;
+}
 
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-        }
+.stat-card {
+    background: var(--zuria);
+    padding: 35px 25px;
+    border-radius: 18px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
 
-        .stat-card {
-            background: var(--zuria);
-            padding: 35px 25px;
-            border-radius: 18px;
-            text-align: center;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
+.stat-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.15);
+}
 
-        .stat-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 18px 40px rgba(0,0,0,0.15);
-        }
+.stat-number {
+    font-size: 2.6rem;
+    color: var(--berde-argia);
+    font-weight: 700;
+    margin-bottom: 10px;
+}
 
-        .stat-number {
-            font-size: 2.6rem;
-            color: var(--berde-argia);
-            font-weight: 700;
-        }
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
 
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            max-width: 950px;
-            margin: 0 auto;
-        }
+@media (max-width: 900px) {
+    .about-grid, .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
 
-        @media (max-width: 900px) {
-            .team-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
+@media (max-width: 600px) {
+    .about-grid, .team-grid {
+        grid-template-columns: 1fr;
+    }
+}
 
-        @media (max-width: 600px) {
-            .team-grid {
-                grid-template-columns: 1fr;
-            }
-        }
+.team-card {
+    background: var(--zuria);
+    padding: 35px;
+    border-radius: 22px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    border: 1px solid #e9ecef;
+    transition: var(--transition);
+}
 
-        .team-card {
-            background: var(--zuria);
-            padding: 35px;
-            border-radius: 22px;
-            text-align: center;
-            box-shadow: var(--shadow);
-            border: 1px solid #e9ecef;
-            transition: var(--transition);
-        }
+.team-card:hover {
+    transform: translateY(-12px);
+    border-color: var(--berde-argia);
+}
 
-        .team-card:hover {
-            transform: translateY(-12px);
-            border-color: var(--berde-argia);
-        }
+.team-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    background: var(--berde-oso-argia);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--berdea);
+    font-size: 2rem;
+    transition: var(--transition);
+}
 
-        .team-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 20px;
-            border-radius: 50%;
-            background: var(--berde-oso-argia);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: var(--berdea);
-            font-size: 2rem;
-            transition: var(--transition);
-        }
+.team-card:hover .team-icon {
+    background: var(--berde-argia);
+    color: var(--zuria);
+}
 
-        .team-card:hover .team-icon {
-            background: var(--berde-argia);
-            color: var(--zuria);
-        }
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+}
 
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 30px;
-        }
+.contact-item {
+    background: var(--zuria);
+    padding: 35px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    border: 1px solid #e9ecef;
+    transition: var(--transition);
+}
 
-        .contact-item {
-            background: var(--zuria);
-            padding: 35px;
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: var(--shadow);
-            border: 1px solid #e9ecef;
-            transition: var(--transition);
-        }
+.contact-item:hover {
+    transform: translateY(-10px);
+    border-color: var(--berde-argia);
+}
 
-        .contact-item:hover {
-            transform: translateY(-10px);
-            border-color: var(--berde-argia);
-        }
+footer {
+    background: var(--iluna);
+    color: var(--zuria);
+    padding: 50px 20px;
+    text-align: center;
+    margin-top: 60px;
+}
 
-        footer {
-            background: var(--iluna);
-            color: var(--zuria);
-            padding: 50px 20px;
-            text-align: center;
-            margin-top: 60px;
-        }
+.footer-logo {
+    height: 55px;
+    background: var(--zuria);
+    padding: 6px;
+    border-radius: 12px;
+}
 
-        .footer-logo {
-            height: 55px;
-            background: var(--zuria);
-            padding: 6px;
-            border-radius: 12px;
-        }
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: 0.7s ease;
+}
 
-        @media (max-width: 900px) {
-            .about-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+</style>
 </head>
-
 <body>
 
 <header>
     <img src="logo.png" class="logo-img" alt="EcoTask Logo">
-    <h1 class="hero-title fade">EcoTask</h1>
-    <p class="hero-subtitle fade">Ekintza ekologikoak saritzen dituen jokoa – Gazteak planetaren alde</p>
+    <h1 class="hero-title fade-in">EcoTask</h1>
+    <p class="hero-subtitle fade-in">Ekintza ekologikoak saritzen dituen jokoa – Gazteak planetaren alde</p>
     <div class="header-waves"></div>
 </header>
 
@@ -304,107 +305,45 @@
     </div>
 </nav>
 
-<section id="zer-gara">
-    <div class="container fade">
+<section id="zer-gara" class="fade-in">
+    <div class="container">
         <h2 class="section-title">Zer egiten dugu?</h2>
-
         <div class="about-grid">
             <div>
-                <p class="about-text">
-                    <strong>EcoTask</strong> gazteei ekintza ekologikoak egitera motibatzen dien aplikazioa da, joko baten dinamika erabiliz.
-                </p>
-                <p class="about-text">
-                    Egindako ekintzak partekatu, puntuak irabazi eta sari errealak lortzen dira.
-                </p>
-                <div class="highlight-box">
-                    Mailak igo, erronkak desblokeatu eta lidergo-taulan ager zaitezke.
-                </div>
+                <p class="about-text"><strong>EcoTask</strong> gazteei ekintza ekologikoak egitera motibatzen dien aplikazioa da, joko baten dinamika erabiliz.</p>
+                <p class="about-text">Egindako ekintzak partekatu, puntuak irabazi eta sari errealak lortzen dira.</p>
+                <div class="highlight-box">Mailak igo, erronkak desblokeatu eta lidergo-taulan ager zaitezke.</div>
             </div>
-
             <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-number">16-25</div>
-                    Urteko gazteak
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">5.000</div>
-                    Erabiltzaile aktibo
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">Euskadi</div>
-                    Proiektua
-                </div>
+                <div class="stat-card"><div class="stat-number">16-25</div>Urteko gazteak</div>
+                <div class="stat-card"><div class="stat-number">5.000</div>Erabiltzaile aktibo</div>
+                <div class="stat-card"><div class="stat-number">Euskadi</div>Proiektua</div>
             </div>
         </div>
     </div>
 </section>
 
-<section id="taldea" style="background: var(--zuria);">
-    <div class="container fade">
+<section id="taldea" class="fade-in">
+    <div class="container">
         <h2 class="section-title">Gure Taldea</h2>
-
         <div class="team-grid">
-            <div class="team-card">
-                <div class="team-icon"><i class="fas fa-chart-bar"></i></div>
-                <h3>Danel Berreteaga</h3>
-                <div class="role">Datuen Analista</div>
-            </div>
-
-            <div class="team-card">
-                <div class="team-icon"><i class="fas fa-user-tie"></i></div>
-                <h3>Asier Ayerdi</h3>
-                <div class="role">Koordinatzaile Nagusia</div>
-            </div>
-
-            <div class="team-card">
-                <div class="team-icon"><i class="fas fa-bullhorn"></i></div>
-                <h3>Aner Illaro</h3>
-                <div class="role">Marketing Arduraduna</div>
-            </div>
-
-            <div class="team-card">
-                <div class="team-icon"><i class="fas fa-paint-brush"></i></div>
-                <h3>Luken Bustinza</h3>
-                <div class="role">Diseinatzailea</div>
-            </div>
-
-            <div class="team-card">
-                <div class="team-icon"><i class="fas fa-users"></i></div>
-                <h3>Olaia Aretxaga</h3>
-                <div class="role">Giza Baliabideak</div>
-            </div>
+            <div class="team-card"><div class="team-icon"><i class="fas fa-chart-bar"></i></div><h3>Danel Berreteaga</h3><div class="role">Datuen Analista</div></div>
+            <div class="team-card"><div class="team-icon"><i class="fas fa-user-tie"></i></div><h3>Asier Ayerdi</h3><div class="role">Koordinatzaile Nagusia</div></div>
+            <div class="team-card"><div class="team-icon"><i class="fas fa-bullhorn"></i></div><h3>Aner Illaro</h3><div class="role">Marketing Arduraduna</div></div>
+            <div class="team-card"><div class="team-icon"><i class="fas fa-paint-brush"></i></div><h3>Luken Bustinza</h3><div class="role">Diseinatzailea</div></div>
+            <div class="team-card"><div class="team-icon"><i class="fas fa-users"></i></div><h3>Olaia Aretxaga</h3><div class="role">Giza Baliabideak</div></div>
         </div>
     </div>
 </section>
 
-<section id="kontaktua">
-    <div class="container fade">
+<section id="kontaktua" class="fade-in">
+    <div class="container">
         <h2 class="section-title">Harremanetarako</h2>
-
         <div class="contact-grid">
-            <div class="contact-item">
-                <i class="fas fa-envelope"></i>
-                <strong>Posta</strong>
-                <a href="mailto:info@ecotask.eus">info@ecotask.eus</a>
-            </div>
-
-            <div class="contact-item">
-                <i class="fab fa-instagram"></i>
-                <strong>Instagram</strong>
-                <a href="#">@ecotask</a>
-            </div>
-
-            <div class="contact-item">
-                <i class="fab fa-tiktok"></i>
-                <strong>TikTok</strong>
-                <a href="#">@ecotask</a>
-            </div>
-
-            <div class="contact-item">
-                <i class="fab fa-x-twitter"></i>
-                <strong>Twitter</strong>
-                <a href="#">@ecotask</a>
-            </div>
+            <div class="contact-item"><i class="fas fa-envelope"></i><strong>Posta</strong><a href="mailto:info@ecotask.eus">info@ecotask.eus</a></div>
+            <div class="contact-item"><i class="fab fa-instagram"></i><strong>Instagram</strong><a href="#">@ecotask</a></div>
+            <div class="contact-item"><i class="fab fa-tiktok"></i><strong>TikTok</strong><a href="#">@ecotask</a></div>
+            <div class="contact-item"><i class="fab fa-x-twitter"></i><strong>Twitter</strong><a href="#">@ecotask</a></div>
         </div>
     </div>
 </section>
@@ -415,14 +354,14 @@
 </footer>
 
 <script>
-    const items = document.querySelectorAll('.fade');
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) entry.target.classList.add('visible');
-        });
-    }, { threshold: 0.2 });
+const faders = document.querySelectorAll('.fade-in');
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting) entry.target.classList.add('visible');
+    });
+},{ threshold: 0.2 });
 
-    items.forEach(i => observer.observe(i));
+faders.forEach(fader => observer.observe(fader));
 </script>
 
 </body>
