@@ -4,441 +4,317 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EcoTask - Ingurumenaren Alde</title>
-    <meta name="description" content="EcoTask: Euskadin sortutako aplikazioa. Gazteak ingurumenaren aldeko ekintzak egitera motibatzen ditu joko moduan. Puntuak, mailak, sariak eta komunitatea.">
+
+    <!-- Meta -->
+    <meta name="description" content="EcoTask: Euskadin sortutako aplikazioa. Gazteak ingurumenaren aldeko ekintzak egitera motibatzen ditu joko moduan.">
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
     <style>
         :root {
-            --berdea: #2e7d32;
-            --berde-argia: #4caf50;
-            --berde-oso-argia: #e8f5e8;
-            --grisa-argia: #f8f9fa;
-            --grisa: #6c757d;
-            --iluna: #212529;
-            --zuria: #ffffff;
-            --shadow: 0 10px 30px rgba(0,0,0,0.08);
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --primary: #2e7d32;
+            --primary-light: #4caf50;
+            --primary-soft: #e8f5e8;
+            --gray-soft: #f4f5f6;
+            --gray: #6c757d;
+            --dark: #1f1f1f;
+            --white: #ffffff;
+            --radius: 16px;
+            --shadow: 0 10px 30px rgba(0,0,0,0.07);
+            --transition: all 0.25s ease;
         }
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background-color: var(--grisa-argia);
-            color: var(--iluna);
-            line-height: 1.7;
-            overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
+            background: var(--gray-soft);
+            color: var(--dark);
+            line-height: 1.65;
         }
-        /* Header */
+
+        /* HEADER */
         header {
-            background: linear-gradient(135deg, var(--berdea) 0%, var(--berde-argia) 100%);
-            color: var(--zuria);
+            padding: 100px 20px 80px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
             text-align: center;
-            padding: 100px 20px 70px;
-            position: relative;
-            overflow: hidden;
+            color: var(--white);
         }
-        header::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" opacity="0.07"><defs><pattern id="topo" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse"><path d="M0,100 Q50,50 100,100 T200,100" stroke="%23ffffff" stroke-width="1.5" fill="none"/><path d="M0,150 Q50,100 100,150 T200,150" stroke="%23ffffff" stroke-width="1" fill="none"/><path d="M50,50 Q75,25 100,50" stroke="%23ffffff" stroke-width="1" fill="none"/></pattern></defs><rect width="100%" height="100%" fill="url(%23topo)"/></svg>');
-            background-size: 400px;
-            animation: topo-move 60s infinite linear;
-        }
-        @keyframes topo-move {
-            0% { background-position: 0 0; }
-            100% { background-position: 400px 400px; }
-        }
-        .logo-container {
-            position: relative;
-            z-index: 2;
-            margin-bottom: 25px;
-        }
+
         .logo-img {
-            height: 100px;
-            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.25));
+            height: 95px;
+            margin-bottom: 25px;
+            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.2));
             transition: var(--transition);
         }
-        .logo-img:hover {
-            transform: scale(1.05);
-        }
+        .logo-img:hover { transform: scale(1.05); }
+
         .hero-title {
             font-family: 'Playfair Display', serif;
-            font-size: 3.2rem;
-            font-weight: 700;
-            margin: 25px 0 18px;
-            text-shadow: 0 3px 8px rgba(0,0,0,0.2);
-            letter-spacing: -0.5px;
+            font-size: 3rem;
+            margin: 18px 0;
         }
+
         .hero-subtitle {
-            font-size: 1.35rem;
+            font-size: 1.3rem;
             font-weight: 300;
-            max-width: 750px;
+            max-width: 650px;
             margin: 0 auto;
-            opacity: 0.95;
         }
-        /* Navigation */
+
+        /* NAV */
         nav {
-            background: var(--zuria);
-            padding: 20px 0;
+            background: var(--white);
             position: sticky;
             top: 0;
-            z-index: 1000;
-            box-shadow: 0 3px 20px rgba(0,0,0,0.1);
-            backdrop-filter: blur(12px);
+            z-index: 999;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
         }
+
         .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
+            max-width: 1100px;
+            margin: auto;
             display: flex;
             justify-content: center;
-            gap: 50px;
+            gap: 45px;
+            padding: 18px 0;
         }
+
         nav a {
-            color: var(--iluna);
             text-decoration: none;
+            color: var(--dark);
             font-weight: 600;
-            font-size: 1.1rem;
-            padding: 10px 0;
             position: relative;
+            padding-bottom: 6px;
             transition: var(--transition);
         }
+
+        nav a:hover {
+            color: var(--primary-light);
+        }
+
         nav a::after {
-            content: '';
+            content: "";
             position: absolute;
             bottom: 0;
             left: 50%;
             width: 0;
-            height: 3.5px;
-            background: var(--berde-argia);
-            border-radius: 2px;
+            height: 3px;
+            background: var(--primary-light);
             transition: var(--transition);
             transform: translateX(-50%);
         }
-        nav a:hover {
-            color: var(--berde-argia);
-        }
-        nav a:hover::after {
-            width: 100%;
-        }
-        /* Main Container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        section {
-            padding: 90px 0;
-        }
+
+        nav a:hover::after { width: 100%; }
+
+        /* SECTIONS */
+        section { padding: 85px 20px; }
+        .container { max-width: 1100px; margin: auto; }
+
         .section-title {
             text-align: center;
             font-family: 'Playfair Display', serif;
-            font-size: 2.8rem;
-            color: var(--berdea);
-            margin-bottom: 60px;
-            position: relative;
+            font-size: 2.6rem;
+            color: var(--primary);
+            margin-bottom: 55px;
         }
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 100px;
-            height: 5px;
-            background: var(--berde-argia);
-            margin: 25px auto 0;
-            border-radius: 3px;
-        }
-        /* About Section */
+
+        /* ABOUT */
         .about-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 60px;
+            gap: 55px;
             align-items: center;
-            margin-top: 50px;
         }
-        .about-text {
-            font-size: 1.18rem;
-            text-align: left;
-            letter-spacing: 0.2px;
-        }
-        .about-text strong {
-            color: var(--berdea);
-            font-weight: 600;
-        }
+
         .highlight-box {
-            background: var(--berde-oso-argia);
-            padding: 30px;
-            border-radius: 18px;
-            border-left: 6px solid var(--berde-argia);
-            font-style: italic;
-            font-size: 1.15rem;
+            background: var(--primary-soft);
+            padding: 25px;
+            border-radius: var(--radius);
+            border-left: 6px solid var(--primary-light);
             box-shadow: var(--shadow);
-            line-height: 1.8;
+            font-size: 1.1rem;
+            margin-top: 20px;
         }
+
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 25px;
         }
+
         .stat-card {
-            background: var(--zuria);
-            padding: 35px 25px;
-            border-radius: 18px;
-            text-align: center;
+            background: var(--white);
+            padding: 28px 22px;
+            border-radius: var(--radius);
             box-shadow: var(--shadow);
+            text-align: center;
             transition: var(--transition);
         }
+
         .stat-card:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 25px 45px rgba(0,0,0,0.15);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
+
         .stat-number {
-            font-size: 2.8rem;
+            font-size: 2.4rem;
+            color: var(--primary-light);
             font-weight: 700;
-            color: var(--berde-argia);
-            margin-bottom: 12px;
-            line-height: 1;
         }
+
         .stat-label {
-            color: var(--grisa);
-            font-weight: 500;
-            font-size: 1.05rem;
+            color: var(--gray);
+            margin-top: 6px;
+            font-size: 1rem;
         }
-        /* Team Section */
+
+        /* TEAM */
         .team-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 35px;
-            margin-top: 50px;
         }
+
         .team-card {
-            background: var(--zuria);
-            padding: 35px;
-            border-radius: 22px;
-            text-align: center;
+            background: var(--white);
+            padding: 30px;
+            border-radius: var(--radius);
             box-shadow: var(--shadow);
+            text-align: center;
             transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-            border: 1px solid #e9ecef;
         }
-        .team-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 6px;
-            background: linear-gradient(90deg, var(--berdea), var(--berde-argia));
-            border-radius: 22px 22px 0 0;
-        }
+
         .team-card:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.14);
-            border-color: var(--berde-argia);
+            transform: translateY(-10px);
+            box-shadow: 0 25px 45px rgba(0,0,0,0.12);
         }
+
         .team-icon {
-            width: 80px;
-            height: 80px;
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
-            margin: 0 auto 25px;
-            background: linear-gradient(135deg, var(--berde-oso-argia), #d0e8d0);
+            background: var(--primary-soft);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
-            color: var(--berdea);
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin: 0 auto 18px;
             transition: var(--transition);
         }
+
         .team-card:hover .team-icon {
-            background: var(--berde-argia);
-            color: var(--zuria);
-            transform: scale(1.1);
+            background: var(--primary-light);
+            color: var(--white);
         }
-        .team-card h3 {
-            color: var(--berdea);
-            margin-bottom: 8px;
-            font-weight: 600;
-            font-size: 1.25rem;
+
+        .role {
+            color: var(--gray);
+            margin: 6px 0 12px;
+            font-size: 0.95rem;
         }
-        .team-card .role {
-            color: var(--grisa);
-            font-size: 0.98rem;
-            font-weight: 500;
-            margin-bottom: 12px;
-        }
-        .team-card p {
-            color: var(--grisa);
-            font-size: 0.98rem;
-            line-height: 1.6;
-        }
-        /* Contact Section */
+
+        /* CONTACT */
         .contact-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 35px;
-            margin-top: 50px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
         }
+
         .contact-item {
-            background: var(--zuria);
-            padding: 35px;
-            border-radius: 22px;
+            background: var(--white);
+            padding: 30px;
+            border-radius: var(--radius);
             text-align: center;
             box-shadow: var(--shadow);
             transition: var(--transition);
-            border: 1px solid #e9ecef;
         }
+
         .contact-item:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
-            border-color: var(--berde-argia);
+            box-shadow: 0 25px 40px rgba(0,0,0,0.1);
         }
+
         .contact-item i {
-            font-size: 2.5rem;
-            color: var(--berde-argia);
-            margin-bottom: 18px;
-            transition: var(--transition);
+            font-size: 2.2rem;
+            color: var(--primary-light);
+            margin-bottom: 15px;
         }
-        .contact-item:hover i {
-            color: var(--berdea);
-            transform: scale(1.15);
-        }
-        .contact-item strong {
-            display: block;
-            margin-bottom: 12px;
-            color: var(--iluna);
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
-        .contact-item a {
-            color: var(--berdea);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1.05rem;
-            word-break: break-word;
-        }
-        .contact-item a:hover {
-            color: var(--berde-argia);
-            text-decoration: underline;
-        }
-        /* Footer */
+
+        /* FOOTER */
         footer {
-            background: var(--iluna);
-            color: var(--zuria);
+            background: var(--dark);
+            color: var(--white);
+            padding: 45px 20px;
             text-align: center;
-            padding: 50px 20px;
             margin-top: 60px;
         }
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 18px;
-        }
+
         .footer-logo {
-            height: 55px;
-            filter: brightness(0) invert(1);
-            opacity: 0.92;
+            height: 50px;
+            margin-bottom: 15px;
         }
-        .footer-text {
-            font-size: 0.98rem;
-            opacity: 0.85;
-            letter-spacing: 0.3px;
-        }
-        /* Responsive */
-        @media (max-width: 992px) {
+
+        /* RESPONSIVE */
+        @media (max-width: 880px) {
             .about-grid {
                 grid-template-columns: 1fr;
                 text-align: center;
-                gap: 50px;
-            }
-            .hero-title {
-                font-size: 2.7rem;
             }
         }
-        @media (max-width: 768px) {
-            header {
-                padding: 80px 20px 60px;
-            }
-            .hero-title {
-                font-size: 2.3rem;
-            }
-            .nav-container {
-                flex-direction: column;
-                gap: 18px;
-            }
-            nav a {
-                font-size: 1.05rem;
-            }
-            section {
-                padding: 70px 0;
-            }
-            .section-title {
-                font-size: 2.3rem;
-            }
-        }
-        @media (max-width: 480px) {
-            .logo-img {
-                height: 75px;
-            }
-            .hero-title {
-                font-size: 2rem;
-            }
-            .hero-subtitle {
-                font-size: 1.15rem;
-            }
-            .section-title {
-                font-size: 2rem;
-            }
+
+        @media (max-width: 600px) {
+            .hero-title { font-size: 2.3rem; }
+            .section-title { font-size: 2rem; }
         }
     </style>
 </head>
+
 <body>
 
-    <!-- Header -->
+    <!-- HEADER -->
     <header>
-        <div class="logo-container">
-            <img src="logo.png" alt="EcoTask Logo" class="logo-img">
-        </div>
+        <img src="logo.png" alt="EcoTask Logo" class="logo-img">
         <h1 class="hero-title">EcoTask</h1>
         <p class="hero-subtitle">Ekintza ekologikoak saritzen dituen jokoa – Gazteak planetaren alde</p>
     </header>
 
-    <!-- Navigation -->
+    <!-- NAV -->
     <nav>
         <div class="nav-container">
             <a href="#zer-gara">Zer gara?</a>
             <a href="#taldea">Taldea</a>
-            <a href="#kontaktua">Harremanetarako</a>
+            <a href="#kontaktua">Harremanetan</a>
         </div>
     </nav>
 
-    <!-- About Section -->
+    <!-- ABOUT -->
     <section id="zer-gara">
         <div class="container">
             <h2 class="section-title">Zer egiten dugu?</h2>
-            
+
             <div class="about-grid">
                 <div>
-                    <p class="about-text">
-                        <strong>EcoTask</strong> Euskadin sortutako mugikor aplikazio bat da, gazteei ingurumenaren aldeko ekintzak egitera motibatzen dituena, <strong>joko bat bezala</strong>.
-                    </p>
-                    <p class="about-text">
-                        Erabiltzaileek ekintza ekologikoak partekatzen dituzte (birziklatzea, garraio publikoa erabiltzea, zuhaitzak landatzea...), <strong>puntuak irabazten</strong> dituzte eta <strong>sari errealak</strong> lortzen dituzte.
-                    </p>
+                    <p><strong>EcoTask</strong> Euskadin sortutako aplikazioa da, gazteak ingurumenaren aldeko ekintzak egitera motibatzeko. Guztia joko moduan planteatuta dago.</p>
+
+                    <p>Birziklatzetik garraio publikoa erabiltzeraino, ekintza bakoitzak <strong>puntuak</strong> ematen ditu eta erabiltzaileek <strong>sari errealak</strong> lor ditzakete.</p>
+
                     <div class="highlight-box">
-                        Mailak igotzen dituzu, erronka zailagoak desblokeatzen dituzu eta <strong>lidergo-taulan</strong> agertzen zara. Zure ohiturak aldatzen dituzu, planeta laguntzen duzu eta <strong>divertitzen zara</strong>.
+                        Mailak igo, erronka berriak desblokeatu eta <strong>lidergo-taulan</strong> aurrera egiteko aukera dago. Ohiturak aldatzea eta planeta laguntzea modu entretenigarrian.
                     </div>
                 </div>
+
                 <div>
                     <div class="stats-grid">
                         <div class="stat-card">
-                            <div class="stat-number">16-25</div>
+                            <div class="stat-number">16–25</div>
                             <div class="stat-label">Urteko gazteak</div>
                         </div>
                         <div class="stat-card">
@@ -447,7 +323,7 @@
                         </div>
                         <div class="stat-card">
                             <div class="stat-number">Euskadi</div>
-                            <div class="stat-label">Osorako proiektua</div>
+                            <div class="stat-label">Eskualde osoa</div>
                         </div>
                     </div>
                 </div>
@@ -455,49 +331,55 @@
         </div>
     </section>
 
-    <!-- Team Section -->
-    <section id="taldea" style="background: var(--zuria);">
+    <!-- TEAM -->
+    <section id="taldea">
         <div class="container">
             <h2 class="section-title">Gure Taldea</h2>
+
             <div class="team-grid">
                 <div class="team-card">
                     <div class="team-icon"><i class="fas fa-chart-bar"></i></div>
                     <h3>Danel Berreteaga</h3>
                     <div class="role">Datuen Analista</div>
-                    <p>Erabiltzaileen datuak aztertzen ditu, portaera ereduak identifikatzen eta aplikazioaren eraginkortasuna hobetzen du.</p>
+                    <p>Datuak aztertzen ditu eta portaera-ereduak identifikatzen laguntzen du.</p>
                 </div>
+
                 <div class="team-card">
                     <div class="team-icon"><i class="fas fa-user-tie"></i></div>
                     <h3>Asier Ayerdi</h3>
                     <div class="role">Koordinatzaile Nagusia</div>
-                    <p>Proiektu osoa zuzentzen du, estrategia definitzen eta taldearen lana koordinatzen du.</p>
+                    <p>Proiektuaren estrategia eta eguneroko dinamika zuzentzen ditu.</p>
                 </div>
+
                 <div class="team-card">
                     <div class="team-icon"><i class="fas fa-bullhorn"></i></div>
                     <h3>Aner Illaro</h3>
                     <div class="role">Marketing Arduraduna</div>
-                    <p>Komunikazio-estrategia, sare sozialak eta ikastetxeekin lankidetza kudeatzen ditu.</p>
+                    <p>Sare sozialak eta hezkuntza-lankidetza kudeatzen ditu.</p>
                 </div>
+
                 <div class="team-card">
                     <div class="team-icon"><i class="fas fa-paint-brush"></i></div>
                     <h3>Luken Bustinza</h3>
                     <div class="role">Diseinatzaile Grafikoa</div>
-                    <p>Identitate bisuala, UI/UX eta aplikazioaren esperientzia erabilerraza sortzen du.</p>
+                    <p>Identitate bisuala eta aplikazioaren esperientzia sortzen ditu.</p>
                 </div>
+
                 <div class="team-card">
                     <div class="team-icon"><i class="fas fa-users"></i></div>
                     <h3>Olaia Aretxaga</h3>
-                    <div class="role">Giza Baliabideen Arduraduna</div>
-                    <p>Taldearen kudeaketa, hautaketa, prestakuntza eta barne-kultura sustatzen ditu.</p>
+                    <div class="role">Giza Baliabideak</div>
+                    <p>Taldearen kudeaketa eta prestakuntza lantzen ditu.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- CONTACT -->
     <section id="kontaktua">
         <div class="container">
             <h2 class="section-title">Harremanetarako</h2>
+
             <div class="contact-grid">
                 <div class="contact-item">
                     <i class="fas fa-envelope"></i>
@@ -523,12 +405,10 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- FOOTER -->
     <footer>
-        <div class="footer-content">
-            <img src="logo.png" alt="EcoTask Logo" class="footer-logo">
-            <p class="footer-text">© 2025 EcoTask. Eskubide guztiak erreserbatuak. | Euskadin sortua</p>
-        </div>
+        <img src="logo.png" alt="EcoTask Logo" class="footer-logo">
+        <p>© 2025 EcoTask — Euskadin sortua</p>
     </footer>
 
 </body>
