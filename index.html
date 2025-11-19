@@ -49,8 +49,8 @@ section{padding:90px 20px;}
 .stat-number{font-size:2.6rem;color:var(--berde-argia);font-weight:700;margin-bottom:10px;white-space:nowrap;}
 
 .team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;max-width:1100px;margin:0 auto;}
-@media(max-width:900px){.about-grid,.team-grid{grid-template-columns:repeat(2,1fr);}}
-@media(max-width:600px){.about-grid,.team-grid{grid-template-columns:1fr;}}
+@media(max-width:900px){.about-grid,.team-grid{grid-template-columns:repeat(2,1fr);} }
+@media(max-width:600px){.about-grid,.team-grid{grid-template-columns:1fr;} }
 .team-card{background:var(--zuria);padding:35px;border-radius:22px;text-align:center;box-shadow:var(--shadow);border:1px solid #e9ecef;transition:var(--transition);}
 .team-card:hover{transform:translateY(-12px);border-color:var(--berde-argia);}
 .team-icon{width:80px;height:80px;margin:0 auto 20px;border-radius:50%;background:var(--berde-oso-argia);display:flex;justify-content:center;align-items:center;color:var(--berdea);font-size:2rem;transition:var(--transition);}
@@ -71,7 +71,9 @@ section{padding:90px 20px;}
 footer{background:var(--iluna);color:var(--zuria);padding:50px 20px;text-align:center;margin-top:60px;}
 .footer-logo{height:55px;background:var(--zuria);padding:6px;border-radius:12px;}
 
-.fade-in{opacity:0;transform:translateY(20px);transition:0.7s ease;}
+/* Fade-in animation base + visible state */
+.fade-in{opacity:0;transform:translateY(20px);transition:0.7s ease;will-change:opacity,transform;}
+.fade-in.visible{opacity:1;transform:none;}
 
 /* ===== Login Form Styles ===== */
 #login-form {
@@ -108,7 +110,7 @@ footer{background:var(--iluna);color:var(--zuria);padding:50px 20px;text-align:c
 <section id="login" class="fade-in">
   <div class="container">
     <h2 class="section-title">Sartu zure kontura</h2>
-    <form id="login-form">
+    <form id="login-form" autocomplete="off">
       <input type="text" id="username" placeholder="Erabiltzaile izena" required>
       <input type="password" id="password" placeholder="Pasahitza" required>
       <button type="submit">Sartu</button>
@@ -118,19 +120,19 @@ footer{background:var(--iluna);color:var(--zuria);padding:50px 20px;text-align:c
 </section>
 
 <header>
-<img src="logo.png" class="logo-img" alt="EcoTask Logo">
-<h1 class="hero-title fade-in">EcoTask</h1>
-<p class="hero-subtitle fade-in">Ekintza ekologikoak saritzen dituen jokoa – Gazteak planetaren alde</p>
-<div class="header-waves"></div>
+  <img src="logo.png" class="logo-img" alt="EcoTask Logo">
+  <h1 class="hero-title fade-in">EcoTask</h1>
+  <p class="hero-subtitle fade-in">Ekintza ekologikoak saritzen dituen jokoa – Gazteak planetaren alde</p>
+  <div class="header-waves" aria-hidden="true"></div>
 </header>
 
 <nav>
-<div class="nav-container">
-<a href="#zer-gara">Zer eskaintzen dugu?</a>
-<a href="#nola-hasi">Nola hasi?</a>
-<a href="#taldea">Taldea</a>
-<a href="#kontaktua">Harremanetarako</a>
-</div>
+  <div class="nav-container">
+    <a href="#zer-gara">Zer eskaintzen dugu?</a>
+    <a href="#nola-hasi">Nola hasi?</a>
+    <a href="#taldea">Taldea</a>
+    <a href="#kontaktua">Harremanetarako</a>
+  </div>
 </nav>
 
 <!-- ===== Dashboard Section (hidden by default) ===== -->
@@ -143,131 +145,141 @@ footer{background:var(--iluna);color:var(--zuria);padding:50px 20px;text-align:c
 </section>
 
 <section id="zer-gara" class="fade-in">
-<div class="container">
-<h2 class="section-title">Zer eskaintzen dizu EcoTask-ek?</h2>
-<div class="about-grid">
-<div>
-<p class="about-text"><strong>EcoTask</strong> erabiliz, zure ingurumenarekiko ekintzak puntuetan eta sarietan bihurtzen dira.</p>
-<p class="about-text">Erronkak betetzea, mailak igotzea eta lidergo-taulan agertzea lor dezakezu, baita zure ekintzak komunitatearekin partekatu ere.</p>
-<div class="highlight-box">Gazteen arteko lehiaketa osasuntsua, motibazioa eta planetaren aldeko ekintzak modu erraz batean.</div>
-</div>
-<div class="stats-grid">
-<div class="stat-card"><div class="stat-number"><span>0</span></div>Puntuak</div>
-<div class="stat-card"><div class="stat-number"><span>5.000</span></div>Erabiltzaile aktibo</div>
-<div class="stat-card"><div class="stat-number"><span>Euskadi</span></div>Proiektua</div>
-</div>
-</div>
-</div>
+  <div class="container">
+    <h2 class="section-title">Zer eskaintzen dizu EcoTask-ek?</h2>
+    <div class="about-grid">
+      <div>
+        <p class="about-text"><strong>EcoTask</strong> erabiliz, zure ingurumenarekiko ekintzak puntuetan eta sarietan bihurtzen dira.</p>
+        <p class="about-text">Erronkak betetzea, mailak igotzea eta lidergo-taulan agertzea lor dezakezu, baita zure ekintzak komunitatearekin partekatu ere.</p>
+        <div class="highlight-box">Gazteen arteko lehiaketa osasuntsua, motibazioa eta planetaren aldeko ekintzak modu erraz batean.</div>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-number"><span id="stat-points">0</span></div>Puntuak</div>
+        <div class="stat-card"><div class="stat-number"><span>5.000</span></div>Erabiltzaile aktibo</div>
+        <div class="stat-card"><div class="stat-number"><span>Euskadi</span></div>Proiektua</div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <section id="nola-hasi" class="fade-in">
-<div class="container">
-<h2 class="section-title">Nola hasi?</h2>
-<div class="about-grid">
-<div>
-<p class="about-text">1. Deskargatu aplikazioa zure telefonoan.</p>
-<p class="about-text">2. Sortu kontu bat edo sartu zure datuetan.</p>
-<p class="about-text">3. Has ezazu erronkak betetzen, puntuak irabazten eta sariak lortzen.</p>
-<div class="highlight-box">Ez da ezer gehiago behar: ekintza txikiek ere aldea egiten dute!</div>
-</div>
-<div class="stats-grid">
-<div class="stat-card"><div class="stat-number"><span>✔</span></div>Erraza eta azkarra</div>
-<div class="stat-card"><div class="stat-number"><span>🌱</span></div>Ingurumenarekiko ekintza</div>
-<div class="stat-card"><div class="stat-number"><span>🎯</span></div>Helburuak betetzea</div>
-</div>
-</div>
-</div>
+  <div class="container">
+    <h2 class="section-title">Nola hasi?</h2>
+    <div class="about-grid">
+      <div>
+        <p class="about-text">1. Deskargatu aplikazioa zure telefonoan.</p>
+        <p class="about-text">2. Sortu kontu bat edo sartu zure datuetan.</p>
+        <p class="about-text">3. Has ezazu erronkak betetzen, puntuak irabazten eta sariak lortzen.</p>
+        <div class="highlight-box">Ez da ezer gehiago behar: ekintza txikiek ere aldea egiten dute!</div>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-number"><span>✔</span></div>Erraza eta azkarra</div>
+        <div class="stat-card"><div class="stat-number"><span>🌱</span></div>Ingurumenarekiko ekintza</div>
+        <div class="stat-card"><div class="stat-number"><span>🎯</span></div>Helburuak betetzea</div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <section id="taldea" class="fade-in">
-<div class="container">
-<h2 class="section-title">Gure Taldea</h2>
-<div class="team-grid">
-<div class="team-card">
-<div class="team-icon"><i class="fas fa-chart-bar"></i></div>
-<h3>Danel Berreteaga</h3>
-<div class="role">Datuen Analista</div>
-<p>Erabiltzaileen datuak aztertzen ditu, portaera ereduak identifikatzen eta aplikazioaren eraginkortasuna hobetzen du.</p>
-</div>
-
-<div class="team-card">
-<div class="team-icon"><i class="fas fa-user-tie"></i></div>
-<h3>Asier Ayerdi</h3>
-<div class="role">Koordinatzaile Nagusia</div>
-<p>Proiektu osoa zuzentzen du, estrategia definitzen eta taldearen lana koordinatzen du.</p>
-</div>
-
-<div class="team-card">
-<div class="team-icon"><i class="fas fa-bullhorn"></i></div>
-<h3>Aner Illaro</h3>
-<div class="role">Marketing Arduraduna</div>
-<p>Komunikazio-estrategia, sare sozialak eta ikastetxeekin lankidetza kudeatzen ditu.</p>
-</div>
-
-<div class="team-card">
-<div class="team-icon"><i class="fas fa-paint-brush"></i></div>
-<h3>Luken Bustinza</h3>
-<div class="role">Diseinatzailea</div>
-<p>Identitate bisuala, UI/UX eta aplikazioaren esperientzia erabilerraza sortzen du.</p>
-</div>
-
-<div class="team-card">
-<div class="team-icon"><i class="fas fa-users"></i></div>
-<h3>Olaia Aretxaga</h3>
-<div class="role">Giza Baliabideak</div>
-<p>Taldearen kudeaketa, hautaketa, prestakuntza eta barne-kultura sustatzen ditu.</p>
-</div>
-</div>
-</div>
+  <div class="container">
+    <h2 class="section-title">Gure Taldea</h2>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-icon"><i class="fas fa-chart-bar"></i></div>
+        <h3>Danel Berreteaga</h3>
+        <div class="role">Datuen Analista</div>
+        <p>Erabiltzaileen datuak aztertzen ditu, portaera ereduak identifikatzen eta aplikazioaren eraginkortasuna hobetzen du.</p>
+      </div>
+      <div class="team-card">
+        <div class="team-icon"><i class="fas fa-user-tie"></i></div>
+        <h3>Asier Ayerdi</h3>
+        <div class="role">Koordinatzaile Nagusia</div>
+        <p>Proiektu osoa zuzentzen du, estrategia definitzen eta taldearen lana koordinatzen du.</p>
+      </div>
+      <div class="team-card">
+        <div class="team-icon"><i class="fas fa-bullhorn"></i></div>
+        <h3>Aner Illaro</h3>
+        <div class="role">Marketing Arduraduna</div>
+        <p>Komunikazio-estrategia, sare sozialak eta ikastetxeekin lankidetza kudeatzen ditu.</p>
+      </div>
+      <div class="team-card">
+        <div class="team-icon"><i class="fas fa-paint-brush"></i></div>
+        <h3>Luken Bustinza</h3>
+        <div class="role">Diseinatzailea</div>
+        <p>Identitate bisuala, UI/UX eta aplikazioaren esperientzia erabilerraza sortzen du.</p>
+      </div>
+      <div class="team-card">
+        <div class="team-icon"><i class="fas fa-users"></i></div>
+        <h3>Olaia Aretxaga</h3>
+        <div class="role">Giza Baliabideak</div>
+        <p>Taldearen kudeaketa, hautaketa, prestakuntza eta barne-kultura sustatzen ditu.</p>
+      </div>
+    </div>
+  </div>
 </section>
 
 <section id="kontaktua" class="fade-in">
-<div class="container">
-<h2 class="section-title">Harremanetarako</h2>
-<div class="contact-grid">
-<div class="contact-item"><i class="fas fa-envelope"></i><strong>Posta</strong><a href="mailto:info@ecotask.eus">info@ecotask.eus</a></div>
-<div class="contact-item"><i class="fab fa-instagram"></i><strong>Instagram</strong><a href="#">@ecotask</a></div>
-<div class="contact-item"><i class="fab fa-tiktok"></i><strong>TikTok</strong><a href="#">@ecotask</a></div>
-<div class="contact-item"><i class="fab fa-x-twitter"></i><strong>Twitter</strong><a href="#">@ecotask</a></div>
-</div>
-</div>
+  <div class="container">
+    <h2 class="section-title">Harremanetarako</h2>
+    <div class="contact-grid">
+      <div class="contact-item"><i class="fas fa-envelope"></i><strong>Posta</strong><a href="mailto:info@ecotask.eus">info@ecotask.eus</a></div>
+      <div class="contact-item"><i class="fab fa-instagram"></i><strong>Instagram</strong><a href="#">@ecotask</a></div>
+      <div class="contact-item"><i class="fab fa-tiktok"></i><strong>TikTok</strong><a href="#">@ecotask</a></div>
+      <div class="contact-item"><i class="fab fa-x-twitter"></i><strong>Twitter</strong><a href="#">@ecotask</a></div>
+    </div>
+  </div>
 </section>
 
 <footer>
-<img src="logo.png" class="footer-logo">
-<p>© 2025 EcoTask — Euskadin sortua</p>
+  <img src="logo.png" class="footer-logo" alt="EcoTask logo">
+  <p>© 2025 EcoTask — Euskadin sortua</p>
 </footer>
 
 <!-- ===== Full Script ===== -->
 <script>
-// ===== Fade-in sections =====
-const faders = document.querySelectorAll('.fade-in');
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting) entry.target.classList.add('visible');
-  });
-}, { threshold: 0.2 });
-faders.forEach(fader => observer.observe(fader));
+/* ===== Fade-in sections with IntersectionObserver (and fallback) ===== */
+(function () {
+  const faders = document.querySelectorAll('.fade-in');
 
-// ===== Demo Users =====
+  function revealOnIntersect(entries) {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(revealOnIntersect, { threshold: 0.2 });
+    faders.forEach(f => observer.observe(f));
+  } else {
+    // fallback: immediately show all
+    faders.forEach(f => f.classList.add('visible'));
+  }
+})();
+
+/* ===== Demo Users ===== */
 const demoUsers = [
   { username: 'danel', password: '1234', points: 120 },
   { username: 'asier', password: 'abcd', points: 75 },
   { username: 'aner', password: 'qwer', points: 50 }
 ];
 
-// ===== DOM Elements =====
+/* ===== DOM Elements ===== */
 const loginForm = document.getElementById('login-form');
 const loginMessage = document.getElementById('login-message');
 const dashboard = document.getElementById('dashboard');
 const userNameEl = document.getElementById('user-name');
 const userPointsEl = document.getElementById('user-points');
 const loginSection = document.getElementById('login');
-const statNumberEl = document.querySelector('.stats-grid .stat-number span');
+const statPointsEl = document.getElementById('stat-points');
 
-// ===== Login Form Handler =====
+/* ===== Login Form Handler ===== */
 loginForm.addEventListener('submit', function(e) {
   e.preventDefault();
+  loginMessage.textContent = '';
+
   const username = document.getElementById('username').value.trim();
   const password = document.getElementById('password').value.trim();
 
@@ -278,12 +290,15 @@ loginForm.addEventListener('submit', function(e) {
     loginSection.style.display = 'none';
     dashboard.style.display = 'block';
 
-    // Fill user info
-    userNameEl.textContent = user.username;
+    // Fill user info (capitalize first letter)
+    userNameEl.textContent = username.charAt(0).toUpperCase() + username.slice(1);
     userPointsEl.textContent = user.points;
 
-    // Update stat grid (first stat card)
-    if(statNumberEl) statNumberEl.textContent = user.points;
+    // Update stat grid (first stat card) safely
+    if (statPointsEl) statPointsEl.textContent = user.points;
+
+    // Clear inputs
+    loginForm.reset();
 
     // Scroll to dashboard
     dashboard.scrollIntoView({ behavior: 'smooth' });
