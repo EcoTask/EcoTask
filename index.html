@@ -24,10 +24,13 @@
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:'Inter',sans-serif;color:var(--iluna);line-height:1.7;overflow-x:hidden;background-color:var(--grisa-argia);background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><g fill='none' stroke='%23cccccc' stroke-width='0.6' opacity='0.28'><path d='M100 200c30-60 80-60 110 0s80 60 110 0'/><path d='M0 100c40-40 80-40 120 0s80 40 120 0'/><path d='M200 300c50-80 100-80 150 0'/></g></svg>");background-size:600px;background-repeat:repeat;}
 
-header{background:linear-gradient(135deg,var(--berdea),var(--berde-argia));color:var(--zuria);text-align:center;padding:110px 20px 160px;position:relative;overflow:hidden;}
+header{background:linear-gradient(135deg,var(--berdea),var(--berde-argia));color:var(--zuria);text-align:center;padding:100px 20px 180px;position:relative;overflow:hidden;}
 .logo-img{height:100px;background:var(--zuria);padding:8px;border-radius:16px;}
 .hero-title{font-family:'Playfair Display',serif;font-size:3.2rem;font-weight:700;margin-top:25px;}
-.hero-subtitle{font-size:1.3rem;max-width:700px;margin:10px auto 0;}
+.hero-subtitle{font-size:1.3rem;max-width:700px;margin:10px auto 20px;}
+.hero-buttons{margin-top:30px;display:flex;justify-content:center;gap:20px;}
+.hero-buttons a{background:var(--zuria);color:var(--berdea);padding:12px 28px;border-radius:8px;font-weight:600;text-decoration:none;transition:0.3s;}
+.hero-buttons a:hover{background:var(--berde-argia);color:var(--zuria);transform:scale(1.05);}
 .header-waves{position:absolute;left:0;bottom:-1px;width:100%;height:160px;background:url("data:image/svg+xml;utf8,<svg viewBox='0 0 1440 320' xmlns='http://www.w3.org/2000/svg'><path fill='%23ffffff' fill-opacity='0.25' d='M0,64L48,101.3C96,139,192,213,288,218.7C384,224,480,160,576,144C672,128,768,160,864,160C960,160,1056,128,1152,128C1248,128,1344,160,1392,176L1440,192L1440,320L0,320Z'/></svg>");background-size:cover;pointer-events:none;}
 
 nav{background:var(--zuria);padding:20px 0;position:sticky;top:0;z-index:100;box-shadow:0 3px 20px rgba(0,0,0,0.08);}
@@ -69,12 +72,13 @@ section{padding:90px 20px;}
 .contact-item a:hover{color:var(--berde-argia);text-decoration:underline;}
 
 footer{background:var(--iluna);color:var(--zuria);padding:50px 20px;text-align:center;margin-top:60px;}
-.footer-logo{height:55px;background:var(--zuria);padding:6px;border-radius:12px;}
+.footer-logo{height:55px;background:var(--zuria);padding:6px;border-radius:12px;transition:transform 0.5s;}
+.footer-logo:hover{transform:rotate(-5deg) scale(1.05);}
 
 .fade-in{opacity:0;transform:translateY(20px);transition:0.7s ease;}
 .fade-in.visible{opacity:1;transform:translateY(0);}
 
-/* Nola hasi animazioak */
+/* Animazioak orokorrak */
 .step-icon { color: var(--berdea); margin-right: 8px; transition: transform 0.3s ease; }
 .step-icon:hover { transform: rotate(-20deg) scale(1.2); }
 .pulse-box { animation: pulse 2s infinite; }
@@ -88,6 +92,11 @@ footer{background:var(--iluna);color:var(--zuria);padding:50px 20px;text-align:c
 
 .step { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
 .step.visible { opacity: 1; transform: translateY(0); }
+
+/* Erronkak eta sariak */
+.challenge-card{background:var(--berde-oso-argia);padding:30px;border-radius:20px;text-align:center;box-shadow:var(--shadow);transition:var(--transition);}
+.challenge-card:hover{transform:translateY(-10px) scale(1.02);border-left:6px solid var(--berde-argia);}
+.challenge-card i{font-size:2.5rem;margin-bottom:15px;color:var(--berdea);}
 </style>
 </head>
 <body>
@@ -96,6 +105,10 @@ footer{background:var(--iluna);color:var(--zuria);padding:50px 20px;text-align:c
 <img src="logo.png" class="logo-img" alt="EcoTask Logo">
 <h1 class="hero-title fade-in">EcoTask</h1>
 <p class="hero-subtitle fade-in">Ekintza ekologikoak saritzen dituen jokoa – Gazteak planetaren alde</p>
+<div class="hero-buttons fade-in">
+<a href="#nola-hasi">Has zaitez orain</a>
+<a href="#zer-gara">Ikusi Erronkak</a>
+</div>
 <div class="header-waves"></div>
 </header>
 
@@ -103,6 +116,7 @@ footer{background:var(--iluna);color:var(--zuria);padding:50px 20px;text-align:c
 <div class="nav-container">
 <a href="#zer-gara">Zer eskaintzen dugu?</a>
 <a href="#nola-hasi">Nola hasi?</a>
+<a href="#erronkak">Erronkak</a>
 <a href="#taldea">Taldea</a>
 <a href="#kontaktua">Harremanetarako</a>
 </div>
@@ -113,14 +127,15 @@ footer{background:var(--iluna);color:var(--zuria);padding:50px 20px;text-align:c
 <h2 class="section-title">Zer eskaintzen dizu EcoTask-ek?</h2>
 <div class="about-grid">
 <div>
-<p class="about-text"><strong>EcoTask</strong> erabiliz, zure ingurumenarekiko ekintzak puntuetan eta sarietan bihurtzen dira.</p>
-<p class="about-text">Erronkak betetzea, mailak igotzea eta lidergo-taulan agertzea lor dezakezu, baita zure ekintzak komunitatearekin partekatu ere.</p>
-<div class="highlight-box">Gazteen arteko lehiaketa osasuntsua, motibazioa eta planetaren aldeko ekintzak modu erraz batean.</div>
+<p class="about-text"><i class="fas fa-leaf" style="color:var(--berdea);margin-right:8px;"></i>Puntuak eta sariak zure ekintzetatik</p>
+<p class="about-text"><i class="fas fa-users" style="color:var(--berdea);margin-right:8px;"></i>Parte hartu komunitatearekin</p>
+<p class="about-text"><i class="fas fa-chart-line" style="color:var(--berdea);margin-right:8px;"></i>Mailak igo eta lidergo-taulan agertu</p>
+<div class="highlight-box">Ekintza txikiek ere aldea egiten dute!</div>
 </div>
 <div class="stats-grid">
-<div class="stat-card"><div class="stat-number"><span>16-25</span></div>Urteko gazteak</div>
-<div class="stat-card"><div class="stat-number"><span>5.000</span></div>Erabiltzaile aktibo</div>
-<div class="stat-card"><div class="stat-number"><span>Euskadi</span></div>Proiektua</div>
+<div class="stat-card pulse-card"><div class="stat-number"><span>16-25</span></div>Urteko gazteak</div>
+<div class="stat-card pulse-card"><div class="stat-number"><span>5.000</span></div>Erabiltzaile aktibo</div>
+<div class="stat-card pulse-card"><div class="stat-number"><span>Euskadi</span></div>Proiektua</div>
 </div>
 </div>
 </div>
@@ -141,6 +156,17 @@ footer{background:var(--iluna);color:var(--zuria);padding:50px 20px;text-align:c
 <div class="stat-card pulse-card"><div class="stat-number"><span>🌱</span></div>Ingurumenarekiko ekintza</div>
 <div class="stat-card pulse-card"><div class="stat-number"><span>🎯</span></div>Helburuak betetzea</div>
 </div>
+</div>
+</div>
+</section>
+
+<section id="erronkak" class="fade-in">
+<div class="container">
+<h2 class="section-title">Erronkak eta sariak</h2>
+<div class="about-grid">
+<div class="challenge-card"><i class="fas fa-seedling"></i><h3>Landatu zuhaitz bat</h3><p>Puntuak irabazi eta ingurumenaren alde lagundu</p></div>
+<div class="challenge-card"><i class="fas fa-recycle"></i><h3>Birziklatu egunero</h3><p>Erronka bete eta sari txikiak lortu</p></div>
+<div class="challenge-card"><i class="fas fa-bicycle"></i><h3>Joan bizikletaz</h3><p>Kutsadura gutxiago eta puntu gehiago</p></div>
 </div>
 </div>
 </section>
@@ -191,37 +217,4 @@ footer{background:var(--iluna);color:var(--zuria);padding:50px 20px;text-align:c
 <div class="container">
 <h2 class="section-title">Harremanetarako</h2>
 <div class="contact-grid">
-<div class="contact-item"><i class="fas fa-envelope"></i><strong>Posta</strong><a href="mailto:info@ecotask.eus">info@ecotask.eus</a></div>
-<div class="contact-item"><i class="fab fa-instagram"></i><strong>Instagram</strong><a href="#">@ecotask</a></div>
-<div class="contact-item"><i class="fab fa-tiktok"></i><strong>TikTok</strong><a href="#">@ecotask</a></div>
-<div class="contact-item"><i class="fab fa-x-twitter"></i><strong>Twitter</strong><a href="#">@ecotask</a></div>
-</div>
-</div>
-</section>
-
-<footer>
-<img src="logo.png" class="footer-logo">
-<p>© 2025 EcoTask — Euskadin sortua</p>
-</footer>
-
-<script>
-const faders = document.querySelectorAll('.fade-in');
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if(entry.isIntersecting) entry.target.classList.add('visible');
-    });
-},{threshold:0.2});
-faders.forEach(fader => observer.observe(fader));
-
-// Pauksuz-pauso animazioa Nola Hasi atalean
-const steps = document.querySelectorAll('.step');
-let delay = 0;
-steps.forEach(step => {
-    setTimeout(() => {
-        step.classList.add('visible');
-    }, delay);
-    delay += 400; // 0.4s pausoz-pauso
-});
-</script>
-</body>
-</html>
+<div class="contact-item
