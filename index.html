@@ -73,6 +73,21 @@ footer{background:var(--iluna);color:var(--zuria);padding:50px 20px;text-align:c
 
 .fade-in{opacity:0;transform:translateY(20px);transition:0.7s ease;}
 .fade-in.visible{opacity:1;transform:translateY(0);}
+
+/* Nola hasi animazioak */
+.step-icon { color: var(--berdea); margin-right: 8px; transition: transform 0.3s ease; }
+.step-icon:hover { transform: rotate(-20deg) scale(1.2); }
+.pulse-box { animation: pulse 2s infinite; }
+.pulse-card { animation: pulse 2.5s infinite alternate; }
+
+@keyframes pulse {
+    0% { transform: scale(1); box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+    50% { transform: scale(1.05); box-shadow: 0 14px 35px rgba(0,0,0,0.15); }
+    100% { transform: scale(1); box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+}
+
+.step { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.step.visible { opacity: 1; transform: translateY(0); }
 </style>
 </head>
 <body>
@@ -116,15 +131,15 @@ footer{background:var(--iluna);color:var(--zuria);padding:50px 20px;text-align:c
 <h2 class="section-title">Nola hasi?</h2>
 <div class="about-grid">
 <div>
-<p class="about-text">1. Deskargatu aplikazioa zure telefonoan.</p>
-<p class="about-text">2. Sortu kontu bat edo sartu zure datuetan.</p>
-<p class="about-text">3. Has ezazu erronkak betetzen, puntuak irabazten eta sariak lortzen.</p>
-<div class="highlight-box">Ez da ezer gehiago behar: ekintza txikiek ere aldea egiten dute!</div>
+<p class="about-text step"><i class="fas fa-download step-icon"></i>Deskargatu aplikazioa zure telefonoan.</p>
+<p class="about-text step"><i class="fas fa-user-plus step-icon"></i>Sortu kontu bat edo sartu zure datuetan.</p>
+<p class="about-text step"><i class="fas fa-play-circle step-icon"></i>Has ezazu erronkak betetzen, puntuak irabazten eta sariak lortzen.</p>
+<div class="highlight-box pulse-box"><i class="fas fa-leaf"></i>Ez da ezer gehiago behar: ekintza txikiek ere aldea egiten dute!</div>
 </div>
 <div class="stats-grid">
-<div class="stat-card"><div class="stat-number"><span>✔</span></div>Erraza eta azkarra</div>
-<div class="stat-card"><div class="stat-number"><span>🌱</span></div>Ingurumenarekiko ekintza</div>
-<div class="stat-card"><div class="stat-number"><span>🎯</span></div>Helburuak betetzea</div>
+<div class="stat-card pulse-card"><div class="stat-number"><span>✔</span></div>Erraza eta azkarra</div>
+<div class="stat-card pulse-card"><div class="stat-number"><span>🌱</span></div>Ingurumenarekiko ekintza</div>
+<div class="stat-card pulse-card"><div class="stat-number"><span>🎯</span></div>Helburuak betetzea</div>
 </div>
 </div>
 </div>
@@ -190,9 +205,23 @@ footer{background:var(--iluna);color:var(--zuria);padding:50px 20px;text-align:c
 </footer>
 
 <script>
-const faders=document.querySelectorAll('.fade-in');
-const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting) entry.target.classList.add('visible');});},{threshold:0.2});
-faders.forEach(fader=>observer.observe(fader));
+const faders = document.querySelectorAll('.fade-in');
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting) entry.target.classList.add('visible');
+    });
+},{threshold:0.2});
+faders.forEach(fader => observer.observe(fader));
+
+// Pauksuz-pauso animazioa Nola Hasi atalean
+const steps = document.querySelectorAll('.step');
+let delay = 0;
+steps.forEach(step => {
+    setTimeout(() => {
+        step.classList.add('visible');
+    }, delay);
+    delay += 400; // 0.4s pausoz-pauso
+});
 </script>
 </body>
 </html>
