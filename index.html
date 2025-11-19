@@ -6,6 +6,7 @@
 <title>EcoTask - Ingurumenaren Alde</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 <style>
 :root {
   --berdea: #2e7d32;
@@ -18,7 +19,9 @@
   --shadow: 0 10px 30px rgba(0,0,0,0.08);
   --transition: 0.3s cubic-bezier(0.4,0,0.2,1);
 }
+
 *{margin:0;padding:0;box-sizing:border-box;}
+
 body{
   font-family:'Inter',sans-serif;
   color:var(--iluna);
@@ -26,6 +29,26 @@ body{
   overflow-x:hidden;
   background-color:var(--grisa-argia);
 }
+
+/* LOADING ANIMAZIOA */
+#loading {
+  display:none;
+  margin-top:25px;
+}
+.loader {
+  border:6px solid #ddd;
+  border-top:6px solid var(--berde-argia);
+  border-radius:50%;
+  width:45px;
+  height:45px;
+  animation:spin 0.8s linear infinite;
+  margin:auto;
+}
+@keyframes spin {
+  0% {transform:rotate(0deg);}
+  100% {transform:rotate(360deg);}
+}
+
 header{
   background:linear-gradient(135deg,var(--berdea),var(--berde-argia));
   color:var(--zuria);
@@ -34,9 +57,33 @@ header{
   position:relative;
   overflow:hidden;
 }
+
 .logo-img{height:100px;background:var(--zuria);padding:8px;border-radius:16px;}
-.hero-title{font-family:'Playfair Display',serif;font-size:3.2rem;font-weight:700;margin-top:25px;}
-.hero-subtitle{font-size:1.3rem;max-width:700px;margin:10px auto 0;}
+
+.hero-title{
+  font-family:'Playfair Display',serif;
+  font-size:3.2rem;
+  font-weight:700;
+  margin-top:25px;
+}
+
+.hero-subtitle{
+  font-size:1.3rem;
+  max-width:700px;
+  margin:10px auto 0;
+}
+
+.header-waves{
+  position:absolute;
+  left:0;
+  bottom:-1px;
+  width:100%;
+  height:160px;
+  background:url("data:image/svg+xml;utf8,<svg viewBox='0 0 1440 320' xmlns='http://www.w3.org/2000/svg'><path fill='%23ffffff' fill-opacity='0.25' d='M0,64L48,101.3C96,139,192,213,288,218.7C384,224,480,160,576,144C672,128,768,160,864,160C960,160,1056,128,1152,128C1248,128,1344,160,1392,176L1440,192L1440,320L0,320Z'/></svg>");
+  background-size:cover;
+  pointer-events:none;
+}
+
 nav{
   background:var(--zuria);
   padding:20px 0;
@@ -45,6 +92,7 @@ nav{
   z-index:100;
   box-shadow:0 3px 20px rgba(0,0,0,0.08);
 }
+
 .nav-container{
   max-width:1200px;
   margin:0 auto;
@@ -52,6 +100,7 @@ nav{
   justify-content:center;
   gap:50px;
 }
+
 nav a{
   color:var(--iluna);
   text-decoration:none;
@@ -59,6 +108,7 @@ nav a{
   font-size:1.1rem;
   position:relative;
 }
+
 nav a::after{
   content:'';
   position:absolute;
@@ -71,15 +121,63 @@ nav a::after{
   transform:translateX(-50%);
   transition:var(--transition);
 }
+
 nav a:hover::after{width:100%;}
+
 section{padding:90px 20px;}
 .container{max-width:1200px;margin:0 auto;}
+
 .section-title{
   text-align:center;
   font-family:'Playfair Display',serif;
   font-size:2.7rem;
   color:var(--berdea);
   margin-bottom:60px;
+}
+
+.about-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:60px;
+  align-items:center;
+}
+
+.about-text{font-size:1.15rem;}
+
+.highlight-box{
+  background:var(--berde-oso-argia);
+  padding:28px;
+  border-radius:16px;
+  border-left:6px solid var(--berde-argia);
+  box-shadow:var(--shadow);
+  margin-top:20px;
+  font-style:italic;
+}
+
+.stats-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:25px;
+  margin-top:40px;
+}
+
+.stat-card{
+  background:var(--zuria);
+  padding:35px 25px;
+  border-radius:18px;
+  text-align:center;
+  box-shadow:var(--shadow);
+  transition:var(--transition);
+}
+.stat-card:hover{
+  transform:translateY(-10px);
+  box-shadow:0 18px 40px rgba(0,0,0,0.15);
+}
+.stat-number{
+  font-size:2.6rem;
+  color:var(--berde-argia);
+  font-weight:700;
+  margin-bottom:10px;
 }
 
 .input-box {
@@ -89,14 +187,12 @@ section{padding:90px 20px;}
   max-width:360px;
   margin-top:20px;
 }
-
 .input-box input {
   padding:12px;
   border-radius:8px;
   border:1px solid #ccc;
   font-size:1rem;
 }
-
 .login-btn {
   padding:12px;
   background:var(--berde-argia);
@@ -111,39 +207,39 @@ section{padding:90px 20px;}
 }
 .login-btn:hover {background:var(--berdea);}
 
+/* DASHBOARD */
 #dashboard {
   display:none;
-  background:var(--zuria);
+  max-width:700px;
+  margin:90px auto;
+  background:white;
   padding:40px;
-  margin-top:40px;
-  border-radius:18px;
+  border-radius:20px;
   box-shadow:var(--shadow);
+  text-align:center;
 }
 
-.highlight-box{
-  background:var(--berde-oso-argia);
-  padding:28px;
-  border-radius:16px;
-  border-left:6px solid var(--berde-argia);
-  box-shadow:var(--shadow);
-  margin-top:20px;
-  font-style:italic;
+#all-content-hidden {
+  display:none;
 }
 </style>
 </head>
 
 <body>
 
+<div id="all-content">
+
 <header>
   <img src="logo.png" class="logo-img" alt="EcoTask Logo">
   <h1 class="hero-title">EcoTask</h1>
   <p class="hero-subtitle">Ekintza ekologikoak saritzen dituen jokoa – Gazteak planetaren alde</p>
+  <div class="header-waves"></div>
 </header>
 
 <nav>
   <div class="nav-container">
     <a href="#zer-gara">Zer eskaintzen dugu?</a>
-    <a href="#nola-hasi">Saioa hasi</a>
+    <a href="#nola-hasi">Nola hasi?</a>
     <a href="#taldea">Taldea</a>
     <a href="#kontaktua">Harremanetarako</a>
   </div>
@@ -152,17 +248,28 @@ section{padding:90px 20px;}
 <section id="zer-gara">
   <div class="container">
     <h2 class="section-title">Zer eskaintzen dizu EcoTask-ek?</h2>
-    <p>EcoTask-ek zure eguneroko ekintza txikiak ere balio bihurtzen ditu.</p>
+
+    <div class="about-grid">
+      <div>
+        <p class="about-text"><strong>EcoTask</strong> erabiliz, zure ingurumenarekiko ekintzak puntuetan eta sarietan bihurtzen dira.</p>
+        <p class="about-text">Erronkak betetzea, mailak igotzea eta lidergo-taulan agertzea lor dezakezu, baita zure ekintzak komunitatearekin partekatu ere.</p>
+        <div class="highlight-box">Gazteen arteko lehiaketa osasuntsua, motibazioa eta planetaren aldeko ekintzak modu erraz batean.</div>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-number"><span>16-25</span></div>Urteko gazteak</div>
+        <div class="stat-card"><div class="stat-number"><span>5.000</span></div>Erabiltzaile aktibo</div>
+        <div class="stat-card"><div class="stat-number"><span>Euskadi</span></div>Proiektua</div>
+      </div>
+    </div>
   </div>
 </section>
-
-<!-- ------------- LOGIN SEKZIOA ------------- -->
 
 <section id="nola-hasi">
   <div class="container">
     <h2 class="section-title">Saioa hasi</h2>
 
-    <p>Sartu zure datuak. Ez dugu ezer egiaztatuko — edozein daturekin sar zaitezke.</p>
+    <p>Sartu zure datuak eta jarraitu aurrera.</p>
 
     <div class="input-box">
       <input type="text" id="erabiltzailea" placeholder="Erabiltzaile-izena">
@@ -173,34 +280,85 @@ section{padding:90px 20px;}
 
     <div id="login-msg" style="margin-top:15px;font-weight:600;"></div>
 
-    <!-- Dashboard ezkutua -->
-    <div id="dashboard">
-      <h3>Zure profila</h3>
-      <p><strong>Erabiltzailea:</strong> <span id="db-username"></span></p>
-      <p><strong>Puntuak:</strong> <span id="db-points"></span></p>
-      <p><strong>Kontua sortu zen eguna:</strong> <span id="db-date"></span></p>
+    <div id="loading">
+      <div class="loader"></div>
+      <p style="margin-top:10px;text-align:center;">Kargatzen...</p>
     </div>
-
   </div>
 </section>
 
 <section id="taldea">
   <div class="container">
     <h2 class="section-title">Gure Taldea</h2>
-    <p>Taldea ez da aldatu, hor jarraitzen du.</p>
+
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-icon"><i class="fas fa-chart-bar"></i></div>
+        <h3>Danel Berreteaga</h3>
+        <div class="role">Datuen Analista</div>
+        <p>Erabiltzaileen datuak aztertzen ditu, portaera ereduak identifikatzen eta aplikazioaren eraginkortasuna hobetzen du.</p>
+      </div>
+
+      <div class="team-card">
+        <div class="team-icon"><i class="fas fa-user-tie"></i></div>
+        <h3>Asier Ayerdi</h3>
+        <div class="role">Koordinatzaile Nagusia</div>
+        <p>Proiektu osoa zuzentzen du, estrategia definitzen eta taldearen lana koordinatzen du.</p>
+      </div>
+
+      <div class="team-card">
+        <div class="team-icon"><i class="fas fa-bullhorn"></i></div>
+        <h3>Aner Illaro</h3>
+        <div class="role">Marketing Arduraduna</div>
+        <p>Komunikazio-estrategia, sare sozialak eta ikastetxeekin lankidetza kudeatzen ditu.</p>
+      </div>
+
+      <div class="team-card">
+        <div class="team-icon"><i class="fas fa-paint-brush"></i></div>
+        <h3>Luken Bustinza</h3>
+        <div class="role">Diseinatzailea</div>
+        <p>Identitate bisuala, UI/UX eta aplikazioaren esperientzia erabilerraza sortzen du.</p>
+      </div>
+
+      <div class="team-card">
+        <div class="team-icon"><i class="fas fa-users"></i></div>
+        <h3>Olaia Aretxaga</h3>
+        <div class="role">Giza Baliabideak</div>
+        <p>Taldearen kudeaketa, hautaketa, prestakuntza eta barne-kultura sustatzen ditu.</p>
+      </div>
+    </div>
   </div>
 </section>
 
 <section id="kontaktua">
   <div class="container">
     <h2 class="section-title">Harremanetarako</h2>
-    <p>info@ecotask.eus</p>
+
+    <div class="contact-grid">
+      <div class="contact-item"><i class="fas fa-envelope"></i><strong>Posta</strong><a href="mailto:info@ecotask.eus">info@ecotask.eus</a></div>
+      <div class="contact-item"><i class="fab fa-instagram"></i><strong>Instagram</strong><a href="#">@ecotask</a></div>
+      <div class="contact-item"><i class="fab fa-tiktok"></i><strong>TikTok</strong><a href="#">@ecotask</a></div>
+      <div class="contact-item"><i class="fab fa-x-twitter"></i><strong>Twitter</strong><a href="#">@ecotask</a></div>
+    </div>
   </div>
 </section>
 
 <footer>
+  <img src="logo.png" class="footer-logo">
   <p>© 2025 EcoTask — Euskadin sortua</p>
 </footer>
+
+</div> <!-- all-content amaiera -->
+
+
+<!-- DASHBOARD SEKZIOA (hasieran ezkutuan) -->
+<div id="dashboard">
+  <h2>Zure profila</h2>
+  <p><strong>Erabiltzailea:</strong> <span id="db-username"></span></p>
+  <p><strong>Puntuak:</strong> <span id="db-points"></span></p>
+  <p><strong>Kontua sortu den eguna:</strong> <span id="db-date"></span></p>
+</div>
+
 
 <script>
 function login() {
@@ -214,26 +372,27 @@ function login() {
     return;
   }
 
-  // Login beti onartua
-  document.getElementById("login-msg").textContent = "Sarrera ongi burutu da!";
-  document.getElementById("login-msg").style.color = "green";
+  document.getElementById("login-msg").textContent = "";
+  document.getElementById("loading").style.display = "block";
 
-  // Random puntu kopurua
-  const points = Math.floor(Math.random() * 500);
-
-  // Gaurko data kontu sortu gisa
-  const date = new Date().toLocaleDateString("eu-ES");
-
-  document.getElementById("db-username").textContent = user;
-  document.getElementById("db-points").textContent = points;
-  document.getElementById("db-date").textContent = date;
-
-  document.getElementById("dashboard").style.display = "block";
-
-  // Scroll automatikoa
   setTimeout(() => {
-    document.getElementById("dashboard").scrollIntoView({behavior:'smooth'});
-  }, 300);
+    document.getElementById("loading").style.display = "none";
+
+    // Dena ezkutatu
+    document.getElementById("all-content").style.display = "none";
+
+    // Random puntu kopurua
+    const points = Math.floor(Math.random() * 500);
+    const date = new Date().toLocaleDateString("eu-ES");
+
+    document.getElementById("db-username").textContent = user;
+    document.getElementById("db-points").textContent = points;
+    document.getElementById("db-date").textContent = date;
+
+    document.getElementById("dashboard").style.display = "block";
+    window.scrollTo(0, 0);
+
+  }, 1300);
 }
 </script>
 
